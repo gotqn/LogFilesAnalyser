@@ -1,4 +1,4 @@
-class AccessType < ActiveRecord::Base
+class ConfigFile < ActiveRecord::Base
 
   # Relationships
   belongs_to :log_file

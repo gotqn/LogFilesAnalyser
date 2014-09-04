@@ -12,13 +12,21 @@
 
 <p>
   <strong>Access type:</strong>
-  <%=  @log_file.get_access_type_name_by_id %>
+  <%= @log_file.get_access_type_name %>
 </p>
 
-<pre data-source=" <%= (@log_file.log_file) %>">
+<p>
+  <strong>Config file:</strong>
+  <%=  @log_file.get_config_file %>
+</p>
 
+
+<pre data-source="<%= (@log_file.log_file) %>">
 
 </pre>
+
+
+
 
 <%= link_to 'Edit', edit_log_file_path(@log_file) %> |
 <%= link_to 'Back', log_files_path %>

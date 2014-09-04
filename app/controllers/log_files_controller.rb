@@ -69,6 +69,10 @@ class LogFilesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def log_file_params
-      params.require(:log_file).permit(:name, :description, :log_file, :access_type_id)
+      params.require(:log_file).permit(:name,
+                                       :description,
+                                       :log_file,
+                                       :access_type_id,
+                                       config_file_attributes: [:id, :json, :_destroy])
     end
 end

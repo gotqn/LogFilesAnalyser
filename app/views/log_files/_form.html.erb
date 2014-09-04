@@ -1,15 +1,24 @@
+
+
 <%= simple_form_for(@log_file, html: { class: 'form-horizontal' },wrapper: :horizontal_form) do |f| %>
     <fieldset>
       <%= f.input :name, autofocus: true %>
       <%= f.input :description%>
 
-      <%= f.collection_radio_buttons :access_type_id, AccessType.all, :id, :name, selected: @log_file.access_type_id %>
+      <%= f.collection_radio_buttons :access_type_id, AccessType.all, :id, :name,
+                                     selected: @log_file.access_type_id %>
 
       <%= f.input :log_file %>
       <%= f.input :remote_log_file_url, label: 'or log file URL'%>
+
+      <%= f.simple_fields_for :config_file_attributes do |n| %>
+          <%= n.input :json %>
+      <% end %>
 
       <div class="actions">
         <%= f.submit %>
       </div>
     </fieldset>
 <% end %>
+
+
