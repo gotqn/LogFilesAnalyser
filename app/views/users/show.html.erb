@@ -1,0 +1,148 @@
+<div class='panel panel-default'>
+  <div class='panel-heading'>User Details</div>
+  <div class='panel-body'>
+
+    <!-- Nav tabs -->
+    <ul class='nav nav-tabs' role='tablist'>
+      <li class='active'><a href='#profile' role='tab' data-toggle='tab'><i class='icon-user-4'></i>Profile</a></li>
+      <li><a href='#articles' role='tab' data-toggle='tab'><i class='icon-article-alt-1'></i>Articles</a></li>
+      <li><a href='#logs' role='tab' data-toggle='tab'><i class='icon-calendar-7'></i>Logs</a></li>
+      <li><a href='#others' role='tab' data-toggle='tab'><i class='icon-info-circled'></i>Other</a></li>
+    </ul>
+
+    <!-- Tab panes -->
+    <div class='tab-content'>
+      <div class='tab-pane active' id='profile'>
+        <br />
+        <div class='table-responsive'>
+          <table class='table table-striped table-bordered table-condensed'>
+            <thead>
+              <tr>
+                <th colspan='2'><span style='visibility:hidden;'>Hidden Text</span></th>
+              </tr>
+            </thead>
+            <tbody>
+            <% if can? :manage, User %>
+              <tr>
+                <td><strong>User ID</strong></td>
+                <td><%= @user.id %></td>
+              </tr>
+            <% end %>
+              <tr>
+                <td><strong>Gravatar</strong></td>
+                <td><%=image_tag avatar_url(@user)%></td>
+              </tr>
+              <tr>
+                <td><strong>Login</strong></td>
+                <td><%= @user.username %></td>
+              </tr>
+              <tr>
+                <td><strong>Email</strong></td>
+                <td><%= @user.email %></td>
+              </tr>
+            <% if can? :manage, User %>
+              <tr>
+                <td><strong>Is Admin</strong></td>
+                <td><%= @user.is_admin? ? 'Yes' : 'No' %></td>
+              </tr>
+            <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class='tab-pane' id='articles'>
+        <br />
+        <div class='table-responsive'>
+          <table class='table table-striped table-bordered table-condensed'>
+            <thead>
+            <tr>
+              <th><strong>Name</strong></th>
+              <th><strong>Created at</strong></th>
+              <th><strong>Last Modified at</strong></th>
+            </tr>
+            </thead>
+            <tbody>
+            <% articles = get_log_files_by_id(@user.id) %>
+            <% if articles.empty? %>
+                <tr>
+                  <td colspan='3'><strong>No articles found.</strong></td>
+                </tr>
+            <% else %>
+                <% articles.each do |article| %>
+                    <tr>
+                      <td><%= link_to article.name, article_path(article.id) %></td>
+                      <td><%= article.created_at %></td>
+                      <td><%= article.updated_at %></td>
+                    </tr>
+                <% end %>
+            <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class='tab-pane' id='logs'>
+        <br />
+        <div class='table-responsive'>
+          <table class='table table-striped table-bordered table-condensed'>
+            <thead>
+              <tr>
+                <th colspan='2'><span style='visibility:hidden;'>Hidden Text</span></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Created at</strong></td>
+                <td><%= @user.created_at %></td>
+              </tr>
+              <tr>
+                <td><strong>Updated at</strong></td>
+                <td><%= @user.updated_at %></td>
+              </tr>
+              <tr>
+                <td><strong>Last sign in at</strong></td>
+                <td><%= @user.last_sign_in_at %></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class='tab-pane' id='others'>
+        <br />
+        <div class='table-responsive'>
+          <table class='table table-striped table-bordered table-condensed'>
+            <thead>
+              <tr>
+                <th colspan='2'><span style='visibility:hidden;'>Hidden Text</span></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Sing In IP address</strong></td>
+                <td><%= @user.current_sign_in_ip %></td>
+              </tr>
+              <tr>
+                <td><strong>Provider</strong></td>
+                <td><%= @user.provider %></td>
+              </tr>
+              <tr>
+                <td><strong>Sign in count</strong></td>
+                <td><%= @user.sign_in_count %></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<% if can? :manage, User %>
+    <%= link_to edit_user_path(@user), class: 'btn btn-warning' do %>
+        <i class='icon-pencil'></i> Edit
+    <% end %>
+
+    <%= link_to users_path, class: 'btn btn-default btn-primary' do %>
+        <i class='icon-left-big'></i> Back
+    <% end %>
+<% end %>
+

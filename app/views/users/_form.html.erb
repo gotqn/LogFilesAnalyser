@@ -1,0 +1,26 @@
+<%= simple_form_for(@user, html: { class: 'form-horizontal' },wrapper: :horizontal_form) do |f| %>
+<fieldset>
+  <%= f.input :username, autofocus: true, placeholder: 'myname-89' %>
+  <%= f.input :email, placeholder: 'mymail@mail.com' %>
+  <%= f.input :password, autocomplete: 'off', placeholder:'eg. X8df!90EO' %>
+  <%= f.input :password_confirmation, autocomplete: 'off',  placeholder:'eg. X8df!90EO' %>
+  <div class='form-group'>
+  <div class='col-sm-2'></div>
+  <div class='form-actions col-sm-9'>
+    <%= button_tag(type: 'submit', class: 'btn btn-primary') do %>
+        <% if @user.new_record? %>
+        <i class='icon-user-add'></i> Create User
+        <% else %>
+        <i class='icon-edit-alt'></i> Save
+        <% end %>
+    <% end %>
+    <%= link_to users_path, data: { confirm: 'Are you sure?' },class: 'btn btn-danger' do %>
+        <i class='icon-trash'></i> Cancel
+    <% end %>
+  </div>
+  </div>
+</fieldset>
+<% end %>
+
+
+

@@ -1,5 +1,12 @@
-<h1>New log_file</h1>
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h3 class="panel-title"><strong>New log file</strong></h3>
+  </div>
+  <div class="panel-body">
+    <%= render 'form' %>
+  </div>
+</div>
 
-<%= render 'form' %>
-
-<%= link_to 'Back', log_files_path %>
+<%= link_to log_files_path, class: 'btn btn-default btn-primary' do %>
+    <i class='icon-left-big'></i> Back
+<% end %>

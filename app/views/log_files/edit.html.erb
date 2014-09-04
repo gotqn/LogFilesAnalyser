@@ -1,6 +1,16 @@
-<h1>Editing log_file</h1>
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h3 class="panel-title"><strong>Editing log file</strong></h3>
+  </div>
+  <div class="panel-body">
+    <%= render 'form' %>
+  </div>
+</div>
 
-<%= render 'form' %>
+<%= link_to @log_file, class: 'btn btn-success' do %>
+    <i class='icon-list-alt'></i> Show
+<% end %>
 
-<%= link_to 'Show', @log_file %> |
-<%= link_to 'Back', log_files_path %>
+<%= link_to log_files_path, class: 'btn btn-default btn-primary' do %>
+    <i class='icon-left-big'></i> Back
+<% end %>

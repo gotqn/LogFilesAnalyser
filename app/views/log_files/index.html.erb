@@ -1,27 +1,42 @@
-<h1>Listing log_files</h1>
+<div class="row">
+  <% @log_files.each do |log_file| %>
+      <div class="col-sm-6 col-md-4">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <%= log_file.name %>
+          </div>
+          <div class="panel-body">
+            <div class="thumbnail">
+              <div class="thumbnail-image">
+                <% #{image_tag article.image_url(:thumb)} %>
+              </div>
+              <div class="caption">
+                <div>
+                  <%= log_file.description %>
+                </div>
+                <div>
+                  <%= link_to log_file, class: 'btn btn-success' do %>
+                      <i class='icon-list-alt'></i> Show
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          </div>
+          <% if can? :manage, LogFile %>
+              <div class="panel-footer">
+                <%= link_to edit_log_file_path(log_file), class: 'btn btn-warning' do %>
+                    <i class='icon-pencil'></i> Edit
+                <% end %>
+                <%= link_to log_file,method: :delete,data: { confirm: 'Are you sure?' },class: 'btn btn-danger' do %>
+                    <i class='icon-trash'></i> Destroy
+                <% end %>
+              </div>
+          <% end %>
+        </div>
+      </div>
+  <% end %>
+</div>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Description</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @log_files.each do |log_file| %>
-      <tr>
-        <td><%= log_file.name %></td>
-        <td><%= log_file.description %></td>
-        <td><%= link_to 'Show', log_file %></td>
-        <td><%= link_to 'Edit', edit_log_file_path(log_file) %></td>
-        <td><%= link_to 'Destroy', log_file, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Log file', new_log_file_path %>
+<%= link_to new_log_file_path, class: 'btn btn-primary' do %>
+    <i class='icon-doc-add'></i> New Log File
+<% end %>

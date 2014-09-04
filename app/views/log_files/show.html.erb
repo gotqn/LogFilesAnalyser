@@ -1,32 +1,48 @@
-<p id="notice"><%= notice %></p>
+<div class='panel panel-primary'>
+  <div class='panel-heading'>
+    <h3 class='panel-title'><%= @log_file.name %></h3>
+  </div>
+  <div class='panel-body'>
+    <div class="alert alert-info" role="alert">
+      <%= @log_file.description %>
+    </div>
+    <div class='panel-gem'>
+      <p>
+        <strong>Access type:</strong>
+        <%= @log_file.get_access_type_name %>
+      </p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @log_file.name %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @log_file.description %>
-</p>
-
-<p>
-  <strong>Access type:</strong>
-  <%= @log_file.get_access_type_name %>
-</p>
-
-<p>
-  <strong>Config file:</strong>
-  <%=  @log_file.get_config_file %>
-</p>
+      <p>
+        <strong>Config file:</strong>
+        <%=  @log_file.get_config_file %>
+      </p>
 
 
-<pre data-source="<%= (@log_file.log_file) %>">
+      <pre data-source="<%= (@log_file.log_file) %>">
+        </pre>
+    </div>
+  </div>
+  <div class='panel-footer'>
+    <div style='display: inline-block'>
+      <strong>Created by:</strong>
+      <%= get_user_name_by_id(@log_file.user_id) %>
+      <br />
+      <strong>Created on:</strong>
+      <%= @log_file.created_at.to_date %>
+      <br />
+      <strong>Last modified on:</strong>
+      <%= @log_file.updated_at.to_date %>
+    </div>
+  </div>
+</div>
 
-</pre>
-
-
-
-
-<%= link_to 'Edit', edit_log_file_path(@log_file) %> |
-<%= link_to 'Back', log_files_path %>
+<% if can? :update, LogFile %>
+    <%= link_to edit_log_file_path(@log_file), class: 'btn btn-warning' do %>
+        <i class='icon-pencil'></i> Edit
+    <% end %>
+<% end %>
+<% if can? :read, LogFile %>
+    <%= link_to log_files_path, class: 'btn btn-default btn-primary' do %>
+        <i class='icon-left-big'></i> Back
+    <% end %>
+<% end %>

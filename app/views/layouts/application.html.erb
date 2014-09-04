@@ -1,14 +1,85 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>LogFilesAnalyser</title>
+  <title>ImagesGems</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 
-<%= yield %>
+<nav class='navbar navbar-inverse navbar-fixed-top' role='navigation'>
+  <div class='container'>
+
+    <!-- brand and toggle get grouped for better mobile display -->
+    <div class='navbar-header'>
+      <button type='button' data-target='#navbarCollapse' data-toggle='collapse' class='navbar-toggle'>
+        <span class='sr-only'>Toggle navigation</span>
+        <span class='icon-bar'></span>
+        <span class='icon-bar'></span>
+        <span class='icon-bar'></span>
+      </button>
+      <% if user_signed_in? %>
+          <%= link_to '', log_files_path, class: 'navbar-brand glyphicon glyphicon-road', title: 'Log files' %>
+      <% else %>
+          <%= link_to 'Miners Analyser', log_files_path, class: 'navbar-brand' %>
+      <% end %>
+    </div>
+
+    <div id='navbarCollapse' class='collapse navbar-collapse navbar-inverse'>
+      <!-- Collection of nav links and other content for toggling -->
+      <ul class='nav navbar-nav'>
+        <li class='<%= 'active' if current_page?(log_files_path) or current_page?(root_path) %>'><%= link_to 'Logs', log_files_path %></li>
+        <li class='<%= 'active' if current_page?(log_files_path) %>'><%= link_to 'Articles', log_files_path %></li>
+        <% if can? :manage, User %>
+            <li class='<%= 'active' if current_page?(users_path) %>'><%= link_to 'Users', users_path %></li>
+        <% end %>
+      </ul>
+      <% if user_signed_in? %>
+          <ul class='nav navbar-nav navbar-right'>
+            <li>
+              <p class='navbar-text'>
+                <%= image_tag avatar_url(current_user), size: '20x20' %>
+                <strong>
+                  <%= link_to get_user_name_by_id(current_user.id), user_path(current_user.id) %>
+                </strong>
+              </p>
+            </li>
+            <li class='<%= 'active' if current_page?(edit_user_registration_path) %>'>
+              <%= link_to '', edit_user_registration_path, class: 'glyphicon glyphicon-wrench', title: 'Edit profile' %>
+            </li>
+            <li class='<%= 'active' if current_page?(destroy_user_session_path) %>'>
+              <%= link_to '', destroy_user_session_path, method: :delete, class: 'glyphicon glyphicon-log-out', title: 'Logout' %>
+            </li>
+          </ul>
+      <% else %>
+          <ul class='nav navbar-nav navbar-right'>
+            <li class='<%= 'active' if current_page?(new_user_registration_path) %>'><%= link_to 'Sign up', new_user_registration_path %></li>
+            <li class='<%= 'active' if current_page?(new_user_session_path) %>'>
+              <%= link_to '', new_user_session_path, class: 'glyphicon glyphicon-log-in', title: 'Login' %>
+            </li>
+            <li>
+              <%= link_to(user_omniauth_authorize_path(:github), title: 'Login with GitHub') do %>
+                  <%= image_tag('GitHub.png', width: '25', height: '25',alt: 'Login with GitHub') %>
+              <% end %>
+            </li>
+          </ul>
+      <% end %>
+    </div>
+
+  </div>
+</nav>
+
+<div class='container'>
+  <% flash.each do |name, msg| %>
+      <div class='alert alert-<%= name == 'notice' ? 'success' : 'danger' %>' role='alert'>
+        <a class='close' data-dismiss='alert'>×</a>
+        <%= msg %>
+      </div>
+  <% end %>
+
+  <%= yield %>
+</div>
 
 </body>
 </html>

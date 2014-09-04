@@ -1,4 +1,7 @@
 class LogFilesController < ApplicationController
+
+  load_and_authorize_resource
+
   before_action :set_log_file, only: [:show, :edit, :update, :destroy]
 
   # GET /log_files
@@ -25,6 +28,7 @@ class LogFilesController < ApplicationController
   # POST /log_files.json
   def create
     @log_file = LogFile.new(log_file_params)
+    @log_file.user_id = current_user.id
 
     respond_to do |format|
       if @log_file.save
@@ -73,6 +77,8 @@ class LogFilesController < ApplicationController
                                        :description,
                                        :log_file,
                                        :access_type_id,
-                                       config_file_attributes: [:id, :json, :_destroy])
+                                       :user_id,
+                                       config_file_attributes: [:id, :json, :_destroy]
+                                       )
     end
 end

@@ -1,0 +1,18 @@
+<div class='panel panel-default panel-short center-block'>
+  <div class='panel-heading'>Forgot your password?</div>
+  <div class='panel-body'>
+    <%= simple_form_for(resource, as: resource_name, url: password_path(resource_name),
+                        html: { class: 'form-vertical', method: :post },
+                        wrapper: :vertical_form) do |f| %>
+        <fieldset>
+          <%= f.input :email, placeholder: 'mymail@mail.com', autofocus: true %>
+          <%= button_tag(type: 'submit', class: 'btn btn-success') do %>
+              <i class='icon-user-add'></i> Send me reset password instructions
+          <% end %>
+        </fieldset>
+    <% end %>
+  </div>
+  <div class='panel-footer'>
+    <%= render 'devise/shared/links' %>
+  </div>
+</div>

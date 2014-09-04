@@ -1,22 +1,29 @@
-
-
 <%= simple_form_for(@log_file, html: { class: 'form-horizontal' },wrapper: :horizontal_form) do |f| %>
     <fieldset>
       <%= f.input :name, autofocus: true %>
       <%= f.input :description%>
-
       <%= f.collection_radio_buttons :access_type_id, AccessType.all, :id, :name,
                                      selected: @log_file.access_type_id %>
-
       <%= f.input :log_file %>
       <%= f.input :remote_log_file_url, label: 'or log file URL'%>
-
       <%= f.simple_fields_for :config_file_attributes do |n| %>
           <%= n.input :json %>
       <% end %>
 
-      <div class="actions">
-        <%= f.submit %>
+      <div class='form-group'>
+        <div class='col-sm-2'></div>
+        <div class='form-actions col-sm-9'>
+          <%= button_tag(type: 'submit', class: 'btn btn-success') do %>
+              <% if @log_file.new_record? %>
+                  <i class='icon-doc-add'></i> Create Article
+              <% else %>
+                  <i class='icon-edit-alt'></i> Save
+              <% end %>
+          <% end %>
+          <%= link_to log_files_path, data: { confirm: 'Are you sure?' },class: 'btn btn-danger' do %>
+              <i class='icon-trash'></i> Cancel
+          <% end %>
+        </div>
       </div>
     </fieldset>
 <% end %>

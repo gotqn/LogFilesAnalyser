@@ -6,6 +6,7 @@ class LogFile < ActiveRecord::Base
   # Relationships
   has_one :access_type
   has_one :config_file
+  belongs_to :user
 
   # Update relationships models
   accepts_nested_attributes_for :config_file, allow_destroy: true
