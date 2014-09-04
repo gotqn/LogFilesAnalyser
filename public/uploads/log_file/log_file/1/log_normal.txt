@@ -1,0 +1,315 @@
+[18:25:59] Started sgminer 
+[18:25:59] Loaded configuration file sgminer.conf
+[18:26:02] Kernel x11mod is experimental.
+[18:26:02] Kernel x11mod is experimental.
+[18:26:02] Kernel x11mod is experimental.
+[18:26:02] Kernel x11mod is experimental.
+[18:26:02] Probing for an alive pool
+[18:26:02] Pool 0 difficulty changed to 0.010
+[18:26:03] Network diff set to 4.14K
+[18:26:08] Accepted 4e4204e3 Diff 0.013/0.010 GPU 1 at Pool 0 
+[18:26:08] Stratum from Pool 0 requested work restart
+[18:26:12] Accepted dd3b0299 Diff 1.157/0.010 GPU 0 at Pool 0 
+[18:26:13] Accepted 4ef845ad Diff 0.013/0.010 GPU 1 at Pool 0 
+[18:26:28] Accepted 19ae61db Diff 0.039/0.010 GPU 1 at Pool 0 
+[18:26:28] Accepted 0d415f31 Diff 0.075/0.010 GPU 0 at Pool 0 
+[18:26:34] Accepted 46121079 Diff 0.014/0.010 GPU 1 at Pool 0 
+[18:26:38] Accepted 360fdf4a Diff 0.018/0.010 GPU 1 at Pool 0 
+[18:26:58] Accepted 4ba9ef82 Diff 0.013/0.010 GPU 1 at Pool 0 
+[18:27:01] Accepted 284c2165 Diff 0.025/0.010 GPU 0 at Pool 0 
+[18:27:02] Accepted 36666af4 Diff 0.018/0.010 GPU 0 at Pool 0 
+[18:27:05] Accepted 5664b40f Diff 0.012/0.010 GPU 1 at Pool 0 
+[18:27:05] Accepted 42c0d2c6 Diff 0.015/0.010 GPU 1 at Pool 0 
+[18:27:16] Accepted 0661664a Diff 0.157/0.010 GPU 0 at Pool 0 
+[18:27:21] Pool 0 difficulty changed to 0.027
+[18:27:21] Accepted 5cc7e61e Diff 0.011/0.010 GPU 1 at Pool 0 
+[18:27:27] Network diff set to 4.07K
+[18:27:27] Stratum from Pool 0 detected new block
+[18:27:41] Accepted 1ea539be Diff 0.033/0.027 GPU 0 at Pool 0 
+[18:28:07] Accepted 02324ecd Diff 0.455/0.027 GPU 1 at Pool 0 
+[18:28:23] Accepted 110e78fe Diff 0.059/0.027 GPU 1 at Pool 0 
+[18:28:33] Accepted 033a73ae Diff 0.310/0.027 GPU 1 at Pool 0 
+[18:28:58] Accepted 04c0bf7e Diff 0.210/0.027 GPU 1 at Pool 0 
+[18:29:39] Accepted 120391a1 Diff 0.056/0.027 GPU 0 at Pool 0 
+[18:29:41] Accepted 22490106 Diff 0.029/0.027 GPU 1 at Pool 0 
+[18:29:47] Accepted 22c69c17 Diff 0.029/0.027 GPU 1 at Pool 0 
+[18:30:06] Accepted 2191e3e7 Diff 0.030/0.027 GPU 0 at Pool 0 
+[18:30:12] Pool 0 difficulty changed to 0.020
+[18:30:13] Accepted 1bd60dd5 Diff 0.036/0.020 GPU 1 at Pool 0 
+[18:30:14] Accepted 1ad13a9e Diff 0.037/0.020 GPU 0 at Pool 0 
+[18:30:14] Accepted 310113eb Diff 0.020/0.020 GPU 1 at Pool 0 
+[18:30:24] Accepted 2f0c2ace Diff 0.021/0.020 GPU 0 at Pool 0 
+[18:30:33] Accepted 0873b78f Diff 0.118/0.020 GPU 1 at Pool 0 
+[18:31:01] Accepted 2439c226 Diff 0.028/0.020 GPU 0 at Pool 0 
+[18:31:03] Network diff set to 4.04K
+[18:31:03] Stratum from Pool 0 detected new block
+[18:31:06] Accepted 05cb97e7 Diff 0.173/0.020 GPU 1 at Pool 0 
+[18:31:14] Accepted 01cd9667 Diff 0.555/0.020 GPU 1 at Pool 0 
+[18:31:16] Accepted 0e7796f1 Diff 0.069/0.020 GPU 1 at Pool 0 
+[18:31:28] Accepted 240dc01c Diff 0.028/0.020 GPU 0 at Pool 0 
+[18:31:53] Accepted 325738ae Diff 0.020/0.020 GPU 0 at Pool 0 
+[18:31:58] Pool 0 difficulty changed to 0.031
+[18:32:47] Accepted 11f267b9 Diff 0.056/0.031 GPU 0 at Pool 0 
+[18:33:13] Accepted 1aea9387 Diff 0.037/0.031 GPU 1 at Pool 0 
+[18:34:18] Accepted 0c8cd755 Diff 0.080/0.031 GPU 0 at Pool 0 
+[18:34:36] Accepted 1c708da9 Diff 0.035/0.031 GPU 1 at Pool 0 
+[18:34:44] Pool 0 difficulty changed to 0.010
+[18:34:57] Accepted 4cfce0bb Diff 0.013/0.010 GPU 0 at Pool 0 
+[18:35:04] Accepted 56462edd Diff 0.012/0.010 GPU 0 at Pool 0 
+[18:35:11] Accepted 01c549b7 Diff 0.565/0.010 GPU 1 at Pool 0 
+[18:35:12] Accepted 5508509a Diff 0.012/0.010 GPU 1 at Pool 0 
+[18:35:12] Accepted 63546a16 Diff 0.010/0.010 GPU 1 at Pool 0 
+[18:35:26] Accepted 16ed43f7 Diff 0.044/0.010 GPU 0 at Pool 0 
+[18:35:34] Accepted 3170188f Diff 0.020/0.010 GPU 0 at Pool 0 
+[18:35:51] Accepted 0606fd4f Diff 0.166/0.010 GPU 1 at Pool 0 
+[18:35:52] Accepted 58e348c9 Diff 0.011/0.010 GPU 1 at Pool 0 
+[18:36:06] Accepted 25ad4da1 Diff 0.027/0.010 GPU 1 at Pool 0 
+[18:36:07] Accepted 244162dc Diff 0.028/0.010 GPU 0 at Pool 0 
+[18:36:20] Accepted 21c7bc3c Diff 0.030/0.010 GPU 0 at Pool 0 
+[18:36:33] Accepted 57480c29 Diff 0.011/0.010 GPU 1 at Pool 0 
+[18:36:34] Pool 0 difficulty changed to 0.015
+[18:36:36] Accepted 3b06dae0 Diff 0.017/0.015 GPU 1 at Pool 0 
+[18:36:41] Accepted 0582b82f Diff 0.181/0.015 GPU 1 at Pool 0 
+[18:36:46] Accepted 2718e6e8 Diff 0.026/0.015 GPU 1 at Pool 0 
+[18:36:49] Accepted 21ab9c6c Diff 0.030/0.015 GPU 1 at Pool 0 
+[18:36:49] Accepted 177dd5de Diff 0.043/0.015 GPU 1 at Pool 0 
+[18:36:49] Accepted 12f620c9 Diff 0.053/0.015 GPU 0 at Pool 0 
+[18:36:52] Accepted 1a657335 Diff 0.038/0.015 GPU 0 at Pool 0 
+[18:36:59] Accepted 3d696b26 Diff 0.016/0.015 GPU 1 at Pool 0 
+[18:37:08] Accepted 265ac4dc Diff 0.026/0.015 GPU 1 at Pool 0 
+[18:37:09] Accepted 3f4a19ca Diff 0.016/0.015 GPU 1 at Pool 0 
+[18:37:15] Accepted 2ad30a88 Diff 0.023/0.015 GPU 0 at Pool 0 
+[18:37:26] Accepted 0227f7e3 Diff 0.464/0.015 GPU 1 at Pool 0 
+[18:37:49] Accepted 12b894cf Diff 0.053/0.015 GPU 0 at Pool 0 
+[18:37:50] Accepted 07cb9ab5 Diff 0.128/0.015 GPU 1 at Pool 0 
+[18:37:52] Accepted 0b4ac3f5 Diff 0.089/0.015 GPU 0 at Pool 0 
+[18:38:00] Accepted 1f6d0a4a Diff 0.032/0.015 GPU 0 at Pool 0 
+[18:38:06] Accepted 25c627d7 Diff 0.026/0.015 GPU 1 at Pool 0 
+[18:38:18] Accepted 3ba9ebff Diff 0.017/0.015 GPU 0 at Pool 0 
+[18:38:52] Accepted 1e583775 Diff 0.033/0.015 GPU 1 at Pool 0 
+[18:38:56] Accepted 409e3431 Diff 0.015/0.015 GPU 1 at Pool 0 
+[18:39:11] Accepted 3533dcdd Diff 0.019/0.015 GPU 1 at Pool 0 
+[18:39:11] Accepted 0bec6118 Diff 0.084/0.015 GPU 0 at Pool 0 
+[18:39:19] Pool 0 difficulty changed to 0.030
+[18:39:28] Accepted 142d89c0 Diff 0.050/0.030 GPU 0 at Pool 0 
+[18:39:58] Accepted 0d5a5fcc Diff 0.075/0.030 GPU 1 at Pool 0 
+[18:40:01] Accepted 112f4923 Diff 0.058/0.030 GPU 1 at Pool 0 
+[18:40:05] Accepted 124f7e68 Diff 0.055/0.030 GPU 0 at Pool 0 
+[18:40:25] Accepted 06b4bf55 Diff 0.149/0.030 GPU 0 at Pool 0 
+[18:40:31] Accepted 06bb8722 Diff 0.149/0.030 GPU 1 at Pool 0 
+[18:40:37] Accepted 05cbef78 Diff 0.173/0.030 GPU 1 at Pool 0 
+[18:40:47] Accepted 20820246 Diff 0.031/0.030 GPU 0 at Pool 0 
+[18:41:36] Accepted 0921564c Diff 0.110/0.030 GPU 0 at Pool 0 
+[18:41:39] Accepted 1ff11d26 Diff 0.031/0.030 GPU 1 at Pool 0 
+[18:42:06] Accepted 0a708975 Diff 0.096/0.030 GPU 1 at Pool 0 
+[18:42:59] Accepted 0b2335cb Diff 0.090/0.030 GPU 0 at Pool 0 
+[18:43:33] Accepted 059cc4d4 Diff 0.178/0.030 GPU 1 at Pool 0 
+[18:43:42] Accepted 1a890f5b Diff 0.038/0.030 GPU 1 at Pool 0 
+[18:44:15] Accepted 1dd109b3 Diff 0.034/0.030 GPU 1 at Pool 0 
+[18:44:21] Accepted 070668c7 Diff 0.142/0.030 GPU 1 at Pool 0 
+[18:45:19] Accepted c10863ee Diff 1.326/0.030 GPU 1 at Pool 0 
+[18:45:26] Accepted 126da715 Diff 0.054/0.030 GPU 1 at Pool 0 
+[18:46:22] Accepted 010e58b3 Diff 0.947/0.030 GPU 0 at Pool 0 
+[18:46:26] Accepted 071cf932 Diff 0.141/0.030 GPU 0 at Pool 0 
+[18:46:29] Accepted 1a15fbd4 Diff 0.038/0.030 GPU 1 at Pool 0 
+[18:46:38] Accepted 0c872569 Diff 0.080/0.030 GPU 0 at Pool 0 
+[18:46:40] Pool 0 difficulty changed to 0.022
+[18:46:56] Accepted 1eaa65c4 Diff 0.033/0.022 GPU 1 at Pool 0 
+[18:47:06] Accepted 19cdd0c3 Diff 0.039/0.022 GPU 1 at Pool 0 
+[18:47:11] Accepted 134f3625 Diff 0.052/0.022 GPU 1 at Pool 0 
+[18:47:41] Accepted 243f0d94 Diff 0.028/0.022 GPU 1 at Pool 0 
+[18:47:53] Accepted 15d0819c Diff 0.046/0.022 GPU 0 at Pool 0 
+[18:47:55] Accepted 2ae154e8 Diff 0.023/0.022 GPU 0 at Pool 0 
+[18:48:00] Accepted 09483179 Diff 0.108/0.022 GPU 1 at Pool 0 
+[18:48:03] Accepted 010a0902 Diff 0.962/0.022 GPU 0 at Pool 0 
+[18:48:07] Accepted 0844b00a Diff 0.121/0.022 GPU 0 at Pool 0 
+[18:48:08] Accepted 2be48ee9 Diff 0.023/0.022 GPU 0 at Pool 0 
+[18:48:31] Accepted 1ef87fc4 Diff 0.032/0.022 GPU 1 at Pool 0 
+[18:48:31] Accepted 19b145e4 Diff 0.039/0.022 GPU 0 at Pool 0 
+[18:48:56] Accepted 0823ee2a Diff 0.123/0.022 GPU 1 at Pool 0 
+[18:49:05] Accepted 0d644e51 Diff 0.075/0.022 GPU 0 at Pool 0 
+[18:49:10] Accepted 19082b73 Diff 0.040/0.022 GPU 1 at Pool 0 
+[18:49:13] Accepted 0629f130 Diff 0.162/0.022 GPU 0 at Pool 0 
+[18:49:21] Accepted 101899e8 Diff 0.062/0.022 GPU 1 at Pool 0 
+[18:49:21] Accepted 14af0bea Diff 0.048/0.022 GPU 0 at Pool 0 
+[18:49:25] Pool 0 difficulty changed to 0.036
+[18:49:41] Accepted 1b5845d4 Diff 0.037/0.036 GPU 0 at Pool 0 
+[18:49:41] Accepted 0975aa42 Diff 0.106/0.036 GPU 0 at Pool 0 
+[18:49:55] Accepted 197134d8 Diff 0.039/0.036 GPU 1 at Pool 0 
+[18:50:13] Accepted 098fb336 Diff 0.105/0.036 GPU 1 at Pool 0 
+[18:50:35] Accepted 108375ff Diff 0.061/0.036 GPU 0 at Pool 0 
+[18:50:46] Accepted 05106ca7 Diff 0.197/0.036 GPU 1 at Pool 0 
+[18:51:15] Pool 0 difficulty changed to 0.052
+[18:51:30] Accepted 0895a555 Diff 0.116/0.052 GPU 1 at Pool 0 
+[18:51:57] Accepted 10ed9ccc Diff 0.059/0.052 GPU 1 at Pool 0 
+[18:52:11] Accepted 0d05cc51 Diff 19/0.052 GPU 1 at Pool 0 
+[18:52:12] Accepted 0b25a0a4 Diff 0.090/0.052 GPU 1 at Pool 0 
+[18:52:25] Accepted 059927c1 Diff 0.179/0.052 GPU 1 at Pool 0 
+[18:52:30] Accepted 01ec5e82 Diff 0.520/0.052 GPU 1 at Pool 0 
+[18:52:35] Accepted 0c069d73 Diff 0.083/0.052 GPU 1 at Pool 0 
+[18:53:16] Accepted 118bf0cb Diff 0.057/0.052 GPU 0 at Pool 0 
+[18:54:31] Accepted 064f478d Diff 0.158/0.052 GPU 1 at Pool 0 
+[18:54:58] Accepted 073eb0a0 Diff 0.138/0.052 GPU 0 at Pool 0 
+[18:55:15] Accepted 06743c69 Diff 0.155/0.052 GPU 1 at Pool 0 
+[18:55:51] Pool 0 difficulty changed to 0.033
+[18:56:14] Accepted 02284049 Diff 0.464/0.033 GPU 0 at Pool 0 
+[18:56:46] Accepted 1157e29e Diff 0.058/0.033 GPU 1 at Pool 0 
+[18:57:09] Accepted 99b1f532 Diff 1.666/0.033 GPU 0 at Pool 0 
+[18:57:41] Pool 0 difficulty changed to 0.015
+[18:57:44] Accepted 41733440 Diff 0.015/0.015 GPU 0 at Pool 0 
+[18:58:29] Accepted 366f65be Diff 0.018/0.015 GPU 0 at Pool 0 
+[18:58:35] Accepted 405843f5 Diff 0.016/0.015 GPU 0 at Pool 0 
+[18:58:37] Accepted 0df922ee Diff 0.072/0.015 GPU 0 at Pool 0 
+[18:58:39] Accepted 18531dfa Diff 0.041/0.015 GPU 0 at Pool 0 
+[18:59:12] Accepted 1e9d34b0 Diff 0.033/0.015 GPU 0 at Pool 0 
+[18:59:13] Accepted 3c457642 Diff 0.017/0.015 GPU 0 at Pool 0 
+[18:59:14] Pool 0 difficulty changed to 0.011
+[18:59:14] Network diff set to 2.77K
+[18:59:14] Stratum from Pool 0 detected new block
+[18:59:17] Accepted 12bdae70 Diff 0.053/0.011 GPU 1 at Pool 0 
+[18:59:24] Accepted 29b0bdf5 Diff 0.024/0.011 GPU 0 at Pool 0 
+[18:59:27] Accepted 4968dde6 Diff 0.014/0.011 GPU 0 at Pool 0 
+[18:59:36] Accepted 467980c9 Diff 0.014/0.011 GPU 1 at Pool 0 
+[18:59:41] Accepted 2569100a Diff 0.027/0.011 GPU 0 at Pool 0 
+[18:59:44] Accepted 06c8359d Diff 0.147/0.011 GPU 0 at Pool 0 
+[18:59:45] Accepted 1b425b88 Diff 0.037/0.011 GPU 0 at Pool 0 
+[18:59:52] Accepted 4b0c04cb Diff 0.013/0.011 GPU 0 at Pool 0 
+[18:59:54] Accepted 44af3071 Diff 0.015/0.011 GPU 0 at Pool 0 
+[19:00:07] Accepted 3553307d Diff 0.019/0.011 GPU 0 at Pool 0 
+[19:00:12] Network diff set to 2.62K
+[19:00:12] Stratum from Pool 0 detected new block
+[19:00:16] Accepted 43de9e43 Diff 0.015/0.011 GPU 1 at Pool 0 
+[19:00:31] Network diff set to 2.62K
+[19:00:31] Stratum from Pool 0 detected new block
+[19:00:43] Accepted 39111b04 Diff 0.018/0.011 GPU 1 at Pool 0 
+[19:00:54] Accepted 436e2434 Diff 0.015/0.011 GPU 0 at Pool 0 
+[19:00:55] Accepted 3901be4f Diff 0.018/0.011 GPU 0 at Pool 0 
+[19:01:02] Accepted 33bef118 Diff 0.019/0.011 GPU 0 at Pool 0 
+[19:01:10] Accepted 264c919a Diff 0.026/0.011 GPU 0 at Pool 0 
+[19:01:12] Accepted 04504021 Diff 0.232/0.011 GPU 1 at Pool 0 
+[19:01:26] Pool 0 difficulty changed to 0.025
+[19:01:37] Accepted 261315ad Diff 0.026/0.025 GPU 1 at Pool 0 
+[19:01:41] Accepted 231aee24 Diff 0.028/0.025 GPU 1 at Pool 0 
+[19:01:51] Network diff set to 2.54K
+[19:01:51] Stratum from Pool 0 detected new block
+[19:02:19] Accepted 1566b700 Diff 0.047/0.025 GPU 1 at Pool 0 
+[19:02:25] Accepted 1567eeba Diff 0.047/0.025 GPU 0 at Pool 0 
+[19:02:30] Accepted 23495121 Diff 7.255/0.025 GPU 1 at Pool 0 
+[19:02:54] Accepted 12ef01de Diff 0.053/0.025 GPU 1 at Pool 0 
+[19:03:02] Accepted 17a3c5f7 Diff 0.042/0.025 GPU 1 at Pool 0 
+[19:03:53] Accepted 174d0e1f Diff 0.043/0.025 GPU 1 at Pool 0 
+[19:03:53] Pool 0 difficulty changed to 0.018
+[19:03:53] Network diff set to 2.41K
+[19:03:53] Stratum from Pool 0 detected new block
+[19:04:03] Accepted 348e1209 Diff 0.019/0.018 GPU 0 at Pool 0 
+[19:04:04] Accepted 19395013 Diff 0.040/0.018 GPU 1 at Pool 0 
+[19:04:14] Accepted 080be1a0 Diff 0.124/0.018 GPU 1 at Pool 0 
+[19:04:25] Network diff set to 2.45K
+[19:04:25] Stratum from Pool 0 detected new block
+[19:04:36] Accepted 199727d8 Diff 0.039/0.018 GPU 0 at Pool 0 
+[19:04:39] Accepted 09ee83e5 Diff 0.101/0.018 GPU 0 at Pool 0 
+[19:04:45] Network diff set to 2.42K
+[19:04:45] Stratum from Pool 0 detected new block
+[19:04:48] Accepted 19b11333 Diff 0.039/0.018 GPU 0 at Pool 0 
+[19:05:00] Network diff set to 2.71K
+[19:05:00] Stratum from Pool 0 detected new block
+[19:05:12] Accepted 02342e37 Diff 0.454/0.018 GPU 1 at Pool 0 
+[19:05:52] Network diff set to 2.66K
+[19:05:52] Stratum from Pool 0 detected new block
+[19:06:01] Accepted 03ae8b80 Diff 0.272/0.018 GPU 0 at Pool 0 
+[19:06:09] Accepted 0d2bca3d Diff 0.076/0.018 GPU 1 at Pool 0 
+[19:06:12] Accepted 2650ac8c Diff 0.026/0.018 GPU 1 at Pool 0 
+[19:06:38] Accepted 2cf3f31f Diff 0.022/0.018 GPU 0 at Pool 0 
+[19:06:40] Accepted 2be4d53e Diff 0.023/0.018 GPU 0 at Pool 0 
+[19:07:02] Network diff set to 2.65K
+[19:07:02] Stratum from Pool 0 detected new block
+[19:07:08] Accepted 35fe3107 Diff 0.019/0.018 GPU 0 at Pool 0 
+[19:07:13] Accepted 2e6c9f84 Diff 0.022/0.018 GPU 1 at Pool 0 
+[19:07:28] Accepted 12751473 Diff 0.054/0.018 GPU 0 at Pool 0 
+[19:07:29] Accepted 28afff03 Diff 0.025/0.018 GPU 0 at Pool 0 
+[19:07:37] Accepted 11a32bb9 Diff 0.057/0.018 GPU 0 at Pool 0 
+[19:07:43] Accepted 2c2e558d Diff 0.023/0.018 GPU 1 at Pool 0 
+[19:07:47] Network diff set to 2.61K
+[19:07:47] Stratum from Pool 0 detected new block
+[19:07:49] Accepted 02e34422 Diff 0.346/0.018 GPU 0 at Pool 0 
+[19:07:58] Accepted 0a2cdcb5 Diff 0.098/0.018 GPU 1 at Pool 0 
+[19:08:10] Accepted 2f7f6d54 Diff 0.021/0.018 GPU 1 at Pool 0 
+[19:08:16] Network diff set to 2.65K
+[19:08:16] Stratum from Pool 0 detected new block
+[19:08:17] Accepted 0cb38fc8 Diff 20/0.018 GPU 0 at Pool 0 
+[19:08:18] Accepted 08679298 Diff 0.119/0.018 GPU 0 at Pool 0 
+[19:08:27] Accepted 217e3ff4 Diff 0.030/0.018 GPU 1 at Pool 0 
+[19:08:31] Accepted 22aaeadb Diff 0.029/0.018 GPU 1 at Pool 0 
+[19:08:42] Accepted 03968917 Diff 0.279/0.018 GPU 1 at Pool 0 
+[19:08:44] Network diff set to 3K
+[19:08:44] Stratum from Pool 0 detected new block
+[19:08:47] Accepted 177568c7 Diff 0.043/0.018 GPU 1 at Pool 0 
+[19:08:48] Accepted 2174fcf5 Diff 0.030/0.018 GPU 0 at Pool 0 
+[19:08:55] Accepted 36117214 Diff 0.018/0.018 GPU 1 at Pool 0 
+[19:08:55] Accepted 233c22df Diff 0.028/0.018 GPU 1 at Pool 0 
+[19:09:07] Accepted 1a7d752b Diff 0.038/0.018 GPU 0 at Pool 0 
+[19:09:16] Network diff set to 3.1K
+[19:09:16] Stratum from Pool 0 detected new block
+[19:09:21] Accepted 1e13682e Diff 0.033/0.018 GPU 1 at Pool 0 
+[19:09:25] Accepted 346b7a53 Diff 0.019/0.018 GPU 1 at Pool 0 
+[19:09:43] Accepted 201f263d Diff 0.031/0.018 GPU 1 at Pool 0 
+[19:10:21] Accepted 153c2809 Diff 0.047/0.018 GPU 1 at Pool 0 
+[19:10:25] Accepted 23f797d5 Diff 0.028/0.018 GPU 0 at Pool 0 
+[19:10:46] Accepted 0d2a8cfe Diff 0.076/0.018 GPU 0 at Pool 0 
+[19:11:52] Accepted 2e351dcf Diff 0.022/0.018 GPU 0 at Pool 0 
+[19:11:59] Accepted 07859da5 Diff 0.133/0.018 GPU 0 at Pool 0 
+[19:12:01] Accepted 344073b1 Diff 0.019/0.018 GPU 1 at Pool 0 
+[19:12:08] Accepted 1f4f9f20 Diff 0.032/0.018 GPU 0 at Pool 0 
+[19:12:11] Shutdown signal received.
+[19:12:11] 
+Summary of runtime statistics:
+
+[19:12:11] Started at [2014-08-02 18:26:03]
+[19:12:11] Runtime: 0 hrs : 46 mins : 8 secs
+[19:12:11] Average hashrate: 6.6 Megahash/s
+[19:12:11] Solved blocks: 0
+[19:12:11] Best share difficulty: 20
+[19:12:11] Share submissions: 206
+[19:12:11] Accepted shares: 206
+[19:12:11] Rejected shares: 0
+[19:12:11] Accepted difficulty shares: 4
+[19:12:11] Rejected difficulty shares: 0
+[19:12:11] Reject ratio: 0.0%
+[19:12:11] Hardware errors: 0
+[19:12:11] Utility (accepted shares / min): 4.47/min
+[19:12:11] Work Utility (diff1 shares solved / min): 0.09/min
+
+[19:12:11] Stale submissions discarded due to new blocks: 0
+[19:12:11] Unable to get work from server occasions: 0
+[19:12:11] Work items generated locally: 3077
+[19:12:11] Submitting work remotely delay occasions: 0
+[19:12:11] New blocks detected on network: 17
+
+[19:12:11] Pool: stratum+tcp://stratum-eu.suchpool.pw:3335
+[19:12:11]  Share submissions: 206
+[19:12:11]  Accepted shares: 206
+[19:12:11]  Rejected shares: 0
+[19:12:11]  Accepted difficulty shares: 4
+[19:12:11]  Rejected difficulty shares: 0
+[19:12:11]  Reject ratio: 0.0%
+[19:12:11]  Items worked on: 246
+[19:12:11]  Stale submissions discarded due to new blocks: 0
+[19:12:11]  Unable to get work from server occasions: 0
+[19:12:11]  Submitting work remotely delay occasions: 0
+
+[19:12:11] Pool: stratum+tcp://drkpool.com:3333
+[19:12:11]  Share submissions: 0
+[19:12:11]  Accepted shares: 0
+[19:12:11]  Rejected shares: 0
+[19:12:11]  Accepted difficulty shares: 0
+[19:12:11]  Rejected difficulty shares: 0
+[19:12:11]  Items worked on: 0
+[19:12:11]  Stale submissions discarded due to new blocks: 0
+[19:12:11]  Unable to get work from server occasions: 0
+[19:12:11]  Submitting work remotely delay occasions: 0
+
+[19:12:11] Summary of per device statistics:
+
+[19:12:11] GPU0                | (5s):3.388M (avg):3.415Mh/s | A:2 R:0 HW:0 WU:0.044/m
+[19:12:11] GPU1                | (5s):3.168M (avg):3.170Mh/s | A:3 R:0 HW:0 WU:0.043/m
+[19:12:11]  

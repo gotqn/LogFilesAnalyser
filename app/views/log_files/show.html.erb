@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @log_file.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @log_file.description %>
+</p>
+
+<p>
+  <strong>Access type:</strong>
+  <%=  @log_file.get_access_type_name_by_id %>
+</p>
+
+<pre data-source=" <%= (@log_file.log_file) %>">
+
+
+</pre>
+
+<%= link_to 'Edit', edit_log_file_path(@log_file) %> |
+<%= link_to 'Back', log_files_path %>

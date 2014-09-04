@@ -5,12 +5,16 @@
       <driver-ref>postgresql</driver-ref>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
       <jdbc-url>jdbc:postgresql:LogFilesAnalyser_development</jdbc-url>
+      <user-name>gotqn</user-name>
+      <user-password>dfc5dfcedfc3dfd9dfd9dfcfdfcb</user-password>
       <libraries />
     </data-source>
     <data-source source="LOCAL" name="Rails LogFilesAnalyser: test" uuid="f33da3c5-34c8-4a3f-8fd5-750793182062">
       <driver-ref>postgresql</driver-ref>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
       <jdbc-url>jdbc:postgresql:LogFilesAnalyser_test</jdbc-url>
+      <user-name>gotqn</user-name>
+      <user-password>dfc5dfcedfc3dfd9dfd9dfcfdfcb</user-password>
       <libraries />
     </data-source>
     <data-source source="LOCAL" name="Rails LogFilesAnalyser: production" uuid="72d4af5d-0234-4b43-82f3-87ae6ea9cd0b">
