@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  row_number: 1
+  event: MyString
+  log_event_type_id: 
+
+two:
+  row_number: 1
+  event: MyString
+  log_event_type_id: 

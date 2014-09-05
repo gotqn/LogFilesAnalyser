@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  vendor: MyString
+  name: MyString
+  version: MyString
+  log_file_id: 
+
+two:
+  vendor: MyString
+  name: MyString
+  version: MyString
+  log_file_id: 

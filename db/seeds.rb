@@ -67,3 +67,16 @@ users.each do |user, data|
     user.save!
   end
 end
+
+# Inserting default log event types
+types = %w(temp thread overall diff)
+
+types.each do |current_type|
+
+  type = LogEventType.new
+  type.event_type = current_type
+
+  unless LogEventType.where(event_type: current_type).exists?
+    type.save!
+  end
+end

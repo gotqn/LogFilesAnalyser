@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  average: MyString
+  accepted: 1
+  rejected: 1
+  hardware_errors: 1
+  work_utility: MyString
+  last_five_seconds: MyString
+  GraphicsProcessingUnit_id: 
+
+two:
+  average: MyString
+  accepted: 1
+  rejected: 1
+  hardware_errors: 1
+  work_utility: MyString
+  last_five_seconds: MyString
+  GraphicsProcessingUnit_id: 

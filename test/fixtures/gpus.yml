@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  UDID: MyString
+  name: MyString
+  vendorID: MyString
+  log_file_id: 
+
+two:
+  UDID: MyString
+  name: MyString
+  vendorID: MyString
+  log_file_id: 

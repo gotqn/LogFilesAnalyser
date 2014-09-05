@@ -29,9 +29,9 @@ class LogFilesController < ApplicationController
   def create
     @log_file = LogFile.new(log_file_params)
     @log_file.user_id = current_user.id
-
     respond_to do |format|
       if @log_file.save
+        @log_file.process_uploaded_file
         format.html { redirect_to @log_file, notice: 'Log file was successfully created.' }
         format.json { render :show, status: :created, location: @log_file }
       else
