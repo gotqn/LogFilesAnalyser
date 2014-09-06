@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140905181645) do
+ActiveRecord::Schema.define(version: 20140906081537) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,9 +48,9 @@ ActiveRecord::Schema.define(version: 20140905181645) do
     t.integer  "hardware_errors"
     t.string   "work_utility"
     t.string   "last_five_seconds"
-    t.integer  "GraphicsProcessingUnit_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "graphics_processing_unit_id"
   end
 
   create_table "graphics_processing_units", force: true do |t|
@@ -74,9 +74,11 @@ ActiveRecord::Schema.define(version: 20140905181645) do
     t.integer  "log_event_type_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "log_file_id"
   end
 
   add_index "log_events", ["log_event_type_id"], name: "index_log_events_on_log_event_type_id", using: :btree
+  add_index "log_events", ["log_file_id"], name: "index_log_events_on_log_file_id", using: :btree
 
   create_table "log_files", force: true do |t|
     t.string   "name"

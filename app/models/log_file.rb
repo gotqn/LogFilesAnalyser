@@ -13,7 +13,7 @@ class LogFile < ActiveRecord::Base
   has_many :runtime_statistics, dependent: :destroy
   has_one :pool, dependent: :destroy
   has_one :graphics_processing_unit, dependent: :destroy
-  has_many :log_events, dependent: :destroy
+  has_many :log_events, dependent: :delete_all
   belongs_to :user
 
   # Update relationships models
@@ -295,7 +295,7 @@ class LogFile < ActiveRecord::Base
             gpu.save
 
             gpus = GraphicsProcessingUnitStat.new
-            gpus.GraphicsProcessingUnit_id = gpu.id
+            gpus.graphics_processing_unit_id = gpu.id
             gpus.average = current_average
             gpus.last_five_seconds = current_last_five_seconds
             gpus.accepted = current_accepted
@@ -313,6 +313,10 @@ class LogFile < ActiveRecord::Base
 
     def extracting_events
 
+      connection = ActiveRecord::Base.connection
+
+      inserts = Array.new
+
       log_event_types = LogEventType.all
 
       temp_type_id = log_event_types.find_by_event_type('temp').as_json['id']
@@ -320,20 +324,47 @@ class LogFile < ActiveRecord::Base
       overall_type_id = log_event_types.find_by_event_type('overall').as_json['id']
       diff_type_id = log_event_types.find_by_event_type('diff').as_json['id']
 
-
-
       current_file_path = Rails.root.join('public').to_s + log_file.to_s
+
+      prev_time = ''
+      index = 0
+
+      time_now = Time.now.to_s
 
       File.open(current_file_path, 'r') do |current_file|
         current_file.each_line do |line|
 
-          if line =~ /iAdapterIndex/
+          type_id = case line
+                     when /#{Regexp.escape('[thread')}/
+                       thread_type_id
+                     when /Network/
+                       diff_type_id
+                     when /#{Regexp.escape('] (5s):')}/
+                       overall_type_id
+                     when /C  F:/
+                       temp_type_id
+                     else 0
+                   end
 
+          if type_id != 0
+
+            curr_time = line[1,line.index(']') - 1]
+
+            if prev_time != curr_time
+              index = +1
+              prev_time = curr_time
+            end
+
+            event = line[line.index(']') + 1,line.length-line.index(']')].gsub(/\n/, '').strip
+            inserts.push '(' +  index.to_s + ", '" + event + "', " + type_id.to_s + ", '" + time_now + "', '" + time_now + "', " + id.to_s + ')'
 
           end
 
         end
       end
+
+      sql = "INSERT INTO log_events (row_number, event, log_event_type_id, created_at, updated_at, log_file_id) VALUES #{inserts.join(", ")}"
+      connection.execute sql
 
     end
 
