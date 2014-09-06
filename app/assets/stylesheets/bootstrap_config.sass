@@ -29,7 +29,7 @@ body
     th
       background-color: #428bca
       color: white
-      font-weight: normal
+      font-weight: bold
       border: 1px solid transparent #357ebd
       white-space: nowrap
       font-size: 14px
@@ -38,6 +38,7 @@ body
     tbody
       td
         border-top: 1px solid #B8C8D9
+        vertical-align: middle
 
   .panel-default
     width: 800px
@@ -48,6 +49,10 @@ body
       white-space: nowrap
       font-size: 14px
       line-height: 1.428571429
+    .panel-body
+      ul.nav.nav-tabs
+        a
+          font-weight: bold
 
   .panel.panel-short
     width: 400px
@@ -85,3 +90,51 @@ body
         height: 205px
         margin-left: auto
         margin-right: auto
+
+  a.btn
+    font-weight: bold
+
+  i.icon-ok
+    color: green
+    font-size: 20px
+
+  i.icon-cancel
+    color: red
+    font-size: 20px
+
+  abbr
+    display: none
+
+  .form-options
+    span
+      cursor: pointer
+      padding-right: 20px
+    label
+      cursor: pointer
+      padding-top: 5px
+      label
+        padding-left: 5px
+
+  .control-info
+    margin-bottom: 0px
+
+  .table-responsive
+    pre
+      height: 300px
+    .list-group
+      font-size: 13px
+      a
+        padding: 5px 10px
+        &.title
+          font-weight: bold
+    .panel.internal
+      font-size: 13px
+      width: 770px
+      .panel-heading
+        padding: 5px 10px
+        &.title
+          font-weight: bold
+        .panel-title
+          font-size: 13px
+          font-weight: bold
+

@@ -5,7 +5,7 @@
         <th></th>
         <th>Login</th>
         <th>Email</th>
-        <th>Is Admin</th>
+        <th>Admin</th>
         <th></th>
       </tr>
       </thead>
@@ -15,7 +15,7 @@
             <td><%= image_tag avatar_url(user) %></td>
             <td><%= user.username %></td>
             <td><%= user.email %></td>
-            <td><%= user.is_admin? ? 'Yes' : 'No' %></td>
+            <td><%= user.is_admin? ? '<i class="icon-ok"></i>'.html_safe : '<i class="icon-cancel"></i>'.html_safe %></td>
             <td>
               <%= link_to user, class: 'btn btn-success' do %>
                   <i class='icon-list-alt'></i> Show
@@ -23,12 +23,21 @@
               <%= link_to edit_user_path(user), class: 'btn btn-warning' do %>
                   <i class='icon-pencil'></i> Edit
               <% end %>
-              <% if user.is_admin %>
-                  <%= link_to user,method: :delete,data: { confirm: 'Are you sure?' },class: 'btn btn-danger disabled' do %>
+              <%
+                custom_delete_html = '<div>Are you sure you want to delete the following user:</div>'
+                custom_delete_html += '<br/>'
+                custom_delete_html += '<div>' + "#{image_tag avatar_url(user)}" + '</div>'
+                custom_delete_html += '<div>' + "#{user.username}" + '</div>'
+
+              %>
+              <% if user.is_admin  or user.id == current_user.id %>
+                  <%= link_to user,method: :delete,data: { confirm: 'Are you sure?' },
+                              class: 'btn btn-danger disabled' do %>
                       <i class='icon-trash'></i> Destroy
                   <% end %>
               <% else %>
-                  <%= link_to user,method: :delete,data: { confirm: 'Are you sure?' },class: 'btn btn-danger' do %>
+                  <%= link_to user,method: :delete,data: { confirm: 'Are you sure?', message: custom_delete_html},
+                              class: 'btn btn-danger' do %>
                       <i class='icon-trash'></i> Destroy
                   <% end %>
               <% end %>

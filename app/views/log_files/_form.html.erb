@@ -2,20 +2,47 @@
     <fieldset>
       <%= f.input :name, autofocus: true %>
       <%= f.input :description%>
-      <%= f.collection_radio_buttons :access_type_id, AccessType.all, :id, :name,
-                                     selected: @log_file.access_type_id %>
-      <%= f.input :log_file %>
-      <%= f.input :remote_log_file_url, label: 'or log file URL'%>
-      <%= f.simple_fields_for :config_file_attributes do |n| %>
-          <%= n.input :json %>
+
+      <div class='form-group control-info'>
+        <label class="col-sm-3 control-label">Access</label>
+        <div class='form-actions col-sm-9 form-options'>
+          <%= f.collection_radio_buttons :access_type_id, AccessType.all, :id, :name,
+                                         checked: @log_file.get_access_type_id_or_default %>
+        </div>
+      </div>
+
+      <div style='display:none'>
+        <% AccessType.all.each do |type|  %>
+            <span id="<%= 'AccessTypeID' + type.id.to_s %>">
+              <%= type.description %>
+            </span>
+        <% end %>
+      </div>
+
+      <div class='form-group control-info'>
+        <div class='col-sm-3'></div>
+        <div class='form-actions col-sm-9'>
+            <div class="alert alert-info" role="alert"> <%= @log_file.get_access_type_description %></div>
+        </div>
+      </div>
+
+      <% if @log_file.id %>
+          <%= f.simple_fields_for :config_file do |n| %>
+              <%= n.input :json %>
+          <% end %>
+      <% else %>
+          <%= f.input :log_file %>
+          <%= f.simple_fields_for :config_file_attributes do |n| %>
+              <%= n.input :json %>
+          <% end %>
       <% end %>
 
       <div class='form-group'>
-        <div class='col-sm-2'></div>
+        <div class='col-sm-3'></div>
         <div class='form-actions col-sm-9'>
           <%= button_tag(type: 'submit', class: 'btn btn-success') do %>
               <% if @log_file.new_record? %>
-                  <i class='icon-doc-add'></i> Create Article
+                  <i class='icon-doc-add'></i> Upload
               <% else %>
                   <i class='icon-edit-alt'></i> Save
               <% end %>

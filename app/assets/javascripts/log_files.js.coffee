@@ -4,21 +4,17 @@
 
 $(document).ready ->
   $.ajax(
-    url: $("pre").data("source")
+    url: $("pre.log-file").data("source")
     context: document.body
   ).done (response) ->
-    $("pre").html response
+    $("pre.log-file").html response
+    return
+  return
+
+$(document).ready ->
+  $("input[name='log_file[access_type_id]']").change ->
+    $(this).closest(".form-group").next().next().find(".alert-info").hide(0).html($("#AccessTypeID" + $(this).val()).html()).fadeIn "fast"
     return
   return
 
 
-
-
-#$(document).ready(function(){
-#  $.ajax({
-#     url:  $('pre').data('source'),
-#      context: document.body,
-#   }).done(function(response) {
-#  $('pre').html(response);
-#  });
-#});
