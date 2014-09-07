@@ -129,7 +129,7 @@ body
           font-weight: bold
     .panel.internal
       font-size: 13px
-      width: 770px
+      width: 100%
       .panel-heading
         padding: 5px 10px
         &.title
@@ -137,4 +137,26 @@ body
         .panel-title
           font-size: 13px
           font-weight: bold
+      .panel-chart
+        height: 300px
+        width: 350px
 
+    .accordion .panel-heading
+      cursor: pointer
+      &.accordion-toggle
+        &:after
+          font-family: 'fontello'
+          content: '\e862'
+          float: right
+          position: relative
+          bottom: 16px
+        &.collapsed:after
+          content: '\e85e'
+
+    span.stats
+      color: #428BCA
+      font-weight: bold
+
+    table.table-striped.table-bordered.table-condensed.panel-chart
+      td
+        width: 50%

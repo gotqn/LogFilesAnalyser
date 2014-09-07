@@ -69,6 +69,10 @@ class LogFile < ActiveRecord::Base
         Pool.includes(:pool_statistics).where(log_file_id: id)
       end
 
+      def get_device_statistics
+        GraphicsProcessingUnit.includes(:graphics_processing_unit_stat).where(log_file_id: id).order(:name)
+      end
+
     # processing methods
 
       def process_uploaded_file

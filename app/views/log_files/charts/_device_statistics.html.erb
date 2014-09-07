@@ -1,0 +1,106 @@
+<script type='text/javascript'>
+
+    $(document).ready(function(){
+
+        var is_gpu_statistics_chart01_rendered = false;
+        var chart_container01 = $('#gpu-chart-01');
+
+        var is_gpu_statistics_chart02_rendered = false;
+        var chart_container02 = $('#gpu-chart-02');
+
+        $('.nav.nav-tabs a[href="#statistics"]').on('click',function() {
+            setTimeout(render_charts, 1000);
+        });
+
+        function render_charts(){
+            render_char01();
+            render_char02();
+        }
+
+        function render_char01(){
+
+            if(!is_gpu_statistics_chart01_rendered && $(chart_container01).is(":visible")) {
+
+                is_gpu_statistics_chart01_rendered = true;
+
+                $(chart_container01).highcharts({
+                    title: {
+                        text: 'Average Hash Rate per GPU'
+                    },
+                    tooltip: {
+                        pointFormat: '{series.name}: <b>{point.y:.1f} MH/s</b>'
+                    },
+                    plotOptions: {
+                        pie: {
+                            allowPointSelect: true,
+                            cursor: 'pointer',
+                            dataLabels: {
+                                enabled: true,
+                                format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                                style: {
+                                    color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                                }
+                            }
+                        }
+                    },
+                    <%
+                       current_data01 = Array.new
+                       stats.each do |gpu|
+                            current_data01.push([gpu.name, gpu.graphics_processing_unit_stat.average.gsub(/[\D]/, '').to_i])
+                       end
+
+                    %>
+                    series: [{
+                        type: 'pie',
+                        name: 'Hash Rate',
+                        data: <%= current_data01.to_json.html_safe %>
+                    }]
+                });
+
+            }
+        }
+
+        function render_char02(){
+
+            if(!is_gpu_statistics_chart02_rendered && $(chart_container02).is(":visible")) {
+
+                is_gpu_statistics_chart02_rendered = true;
+
+                $(chart_container02).highcharts({
+                    title: {
+                        text: 'Accepted shares per GPU'
+                    },
+                    tooltip: {
+                        pointFormat: '{series.name}: <b>{point.y:.1f}</b>'
+                    },
+                    plotOptions: {
+                        pie: {
+                            allowPointSelect: true,
+                            cursor: 'pointer',
+                            dataLabels: {
+                                enabled: true,
+                                format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                                style: {
+                                    color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                                }
+                            }
+                        }
+                    },
+                    <%
+                       current_data02 = Array.new
+                       stats.each do |gpu|
+                            current_data02.push([gpu.name, gpu.graphics_processing_unit_stat.accepted])
+                       end
+
+                    %>
+                    series: [{
+                        type: 'pie',
+                        name: 'shares',
+                        data: <%= current_data02.to_json.html_safe %>
+                    }]
+                });
+
+            }
+        }
+    });
+</script>

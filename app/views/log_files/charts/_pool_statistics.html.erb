@@ -1,0 +1,120 @@
+<script type='text/javascript'>
+
+$(document).ready(function(){
+
+    var is_pool_statistics_chart_rendered = false;
+    var chart_container = $('#pool-chart');
+
+    $('.nav.nav-tabs a[href="#statistics"]').on('click',function() {
+        setTimeout(render_chart, 1000);
+    });
+
+    function render_chart(){
+
+        if(!is_pool_statistics_chart_rendered && $(chart_container).is(":visible")) {
+
+            is_pool_statistics_chart_rendered = true;
+
+            var colors = Highcharts.getOptions().colors,
+                categories = <%= stats.collect { |pool| pool.name }.to_json.html_safe  %>,
+                data = [
+                    <% stats.each_with_index do |pool, index| %>
+                    <%= ',' unless index == 0 %>
+                    <%
+                        submissions_shares = 0
+                        accepted_shares = 0
+                        rejected_shares = 0
+
+                        pool.pool_statistics.each do |stat|
+                            submissions_shares = stat.stats.gsub(/[^\d]/, '') if stat.stats =~ /Share submissions:/
+                            accepted_shares = stat.stats.gsub(/[^\d]/, '') if stat.stats =~ /Accepted shares:/
+                            rejected_shares = stat.stats.gsub(/[^\d]/, '') if stat.stats =~ /Rejected shares:/
+                        end
+                    %>
+                    {
+                        y: <%= submissions_shares %>,
+                        color: colors[<%= index %>],
+                        drilldown: {
+                            name: '<%= pool.name %>',
+                            categories: ['Accepted', 'Rejected'],
+                            data: [<%= accepted_shares %>, <%= rejected_shares %>],
+                            color: colors[<%= index %>]
+                        }
+                    }
+                    <% end %>
+                ],
+                browserData = [],
+                versionsData = [],
+                i,
+                j,
+                dataLen = data.length,
+                drillDataLen,
+                brightness;
+
+
+            // Build the data arrays
+            for (i = 0; i < dataLen; i += 1) {
+
+                // add browser data
+                browserData.push({
+                    name: categories[i],
+                    y: data[i].y,
+                    color: data[i].color
+                });
+
+                // add version data
+                drillDataLen = data[i].drilldown.data.length;
+                for (j = 0; j < drillDataLen; j += 1) {
+                    brightness = 0.2 - (j / drillDataLen) / 5;
+                    versionsData.push({
+                        name: data[i].drilldown.categories[j],
+                        y: data[i].drilldown.data[j],
+                        color: Highcharts.Color(data[i].color).brighten(brightness).get()
+                    });
+                }
+
+            }
+
+            // Create the chart
+            $(chart_container).highcharts({
+                chart: {
+                    type: 'pie'
+                },
+                title: {
+                    text: 'Submissions shares across pools'
+                },
+                plotOptions: {
+                    pie: {
+                        shadow: false,
+                        center: ['50%', '50%']
+                    }
+                },
+                series: [
+                    {
+                        name: 'Share submissions',
+                        data: browserData,
+                        size: '60%',
+                        dataLabels: {
+                            formatter: function () {
+                                return null;
+                            }
+                        }
+
+                    },
+                    {
+                        data: versionsData,
+                        size: '80%',
+                        innerSize: '60%',
+                        dataLabels: {
+                            formatter: function () {
+
+                                return this.y > 0 ? Math.round(this.percentage * 100) / 100 + '%': null;
+                            }
+                        }
+                    }
+                ]
+            });
+        }
+    }
+});
+</script>
