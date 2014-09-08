@@ -1,42 +1,75 @@
-<div class="row">
-  <% @log_files.each do |log_file| %>
-      <div class="col-sm-6 col-md-4">
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <%= log_file.name %>
-          </div>
-          <div class="panel-body">
-            <div class="thumbnail">
-              <div class="thumbnail-image">
-                <% #{image_tag article.image_url(:thumb)} %>
+<div class="panel panel-primary">
+    <!-- Default panel contents -->
+    <div class="panel-heading"><span style="visibility: hidden;">Log files list</span></div>
+    <div class="panel-body">
+
+
+      <%= search_form_for(@search, html: { class: 'simple-form form-horizontal' },wrapper: :horizontal_form) do |f| %>
+          <fieldset>
+            <%= f.input :name_cont %>
+            <%= f.input :runtime_statistics_stats_cont %>
+            <div class='form-group control-info'>
+              <label class="col-sm-3 control-label">Access</label>
+              <div class='form-actions col-sm-9 form-options'>
+                  <%= f.collection_check_boxes :access_type_id_in, AccessType.all, :id, :name %>
               </div>
-              <div class="caption">
-                <div>
-                  <%= log_file.description %>
-                </div>
-                <div>
-                  <%= link_to log_file, class: 'btn btn-success' do %>
-                      <i class='icon-list-alt'></i> Show
-                  <% end %>
-                </div>
+              <%= button_tag(type: 'submit', class: 'btn btn-primary') do %>
+                  <i class='icon-user-add'></i> Search
+              <% end %>
+            </div>
+           </fieldset>
+      <% end %>
+
+
+      <%= link_to new_log_file_path, class: 'btn btn-primary' do %>
+          <i class='icon-doc-add'></i> New Log File
+      <% end %>
+    </div>
+    <div class="panel-footer">
+      <div class="row">
+      <% @log_files.each_with_index do |log_file, index| %>
+          <% current_stats = get_index_view_runtime_stats(log_file.runtime_statistics.to_a.map(&:serializable_hash)) %>
+          <div class="col-sm-6 col-md-4">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <%= log_file.name %><span class="label label-success"><%= current_stats[:hash] %></span>
               </div>
+              <div class="panel-body">
+                <div class="thumbnail">
+                  <div class="thumbnail-chart" id="log_chart_<%= index %>">
+                    <script type="text/javascript">
+                        var log_chart_<%= index %> = [['accepted',<%= current_stats[:accepted] %>],['rejected',<%= current_stats[:rejected] %>]];
+                    </script>
+                  </div>
+                  <div class="caption">
+                    <div>
+                      <%= link_to log_file, class: 'btn btn-success' do %>
+                          <i class='icon-list-alt'></i> Show
+                      <% end %>
+                    </div>
+                  </div>
+                </div>
+                <ul class="list-group">
+                  <li class="list-group-item list-group-item-success"><%= current_stats[:start_date] %></li>
+                  <li class="list-group-item list-group-item-info"><%= current_stats[:runtime] %></li>
+                </ul>
+              </div>
+              <% if can? :manage, LogFile %>
+                  <div class="panel-footer">
+                    <%= link_to edit_log_file_path(log_file), class: 'btn btn-warning' do %>
+                        <i class='icon-pencil'></i> Edit
+                    <% end %>
+                    <%= link_to log_file,method: :delete,data: { confirm: 'Are you sure?' },class: 'btn btn-danger' do %>
+                        <i class='icon-trash'></i> Destroy
+                    <% end %>
+                  </div>
+              <% end %>
             </div>
           </div>
-          <% if can? :manage, LogFile %>
-              <div class="panel-footer">
-                <%= link_to edit_log_file_path(log_file), class: 'btn btn-warning' do %>
-                    <i class='icon-pencil'></i> Edit
-                <% end %>
-                <%= link_to log_file,method: :delete,data: { confirm: 'Are you sure?' },class: 'btn btn-danger' do %>
-                    <i class='icon-trash'></i> Destroy
-                <% end %>
-              </div>
-          <% end %>
-        </div>
-      </div>
-  <% end %>
+      <% end %>
+    </div>
+  </div>
 </div>
 
-<%= link_to new_log_file_path, class: 'btn btn-primary' do %>
-    <i class='icon-doc-add'></i> New Log File
-<% end %>
+<%= render partial: 'log_files/charts/index_charts_statistics' %>
+

@@ -52,3 +52,5 @@ gem 'autoprefixer-rails'
 
 gem 'simple_form', '3.1.0.rc1'
 gem 'jquery.fileupload-rails'
+
+gem 'ransack', github: 'activerecord-hackery/ransack', branch: 'rails-4.1'

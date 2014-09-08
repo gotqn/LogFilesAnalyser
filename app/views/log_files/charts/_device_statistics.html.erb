@@ -2,6 +2,36 @@
 
     $(document).ready(function(){
 
+        $('.thumbnail-chart').each(function(){
+
+            $(this).highcharts({
+                title: {
+                    text: null
+                },
+                tooltip: {
+                    pointFormat: '{series.name}: {point.y}'
+                },
+                plotOptions: {
+                    pie: {
+                        cursor: 'pointer',
+                        dataLabels: {
+                            enabled: false
+                        }
+                    }
+                },
+                series: [{
+                    type: 'pie',
+                    name: 'shares',
+                    data: window['log_chart_' + $(this).attr('id').replace(/\D/g, '')]
+                }]
+            });
+
+        });
+    });
+
+
+    $(document).ready(function(){
+
         var is_gpu_statistics_chart01_rendered = false;
         var chart_container01 = $('#gpu-chart-01');
 

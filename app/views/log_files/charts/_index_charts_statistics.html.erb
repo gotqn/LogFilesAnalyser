@@ -1,0 +1,32 @@
+<script type="text/javascript">
+    $(document).ready(function() {
+        Highcharts.setOptions({
+            colors: ["#69CD4B", "#ED561B"]
+        });
+        $(".thumbnail-chart").each(function() {
+            $(this).highcharts({
+                title: {
+                    text: null
+                },
+                tooltip: {
+                    pointFormat: "{series.name}: {point.y}"
+                },
+                plotOptions: {
+                    pie: {
+                        cursor: "pointer",
+                        dataLabels: {
+                            enabled: false
+                        }
+                    }
+                },
+                series: [
+                    {
+                        type: "pie",
+                        name: "shares",
+                        data: window["log_chart_" + $(this).attr("id").replace(/\D/g, "")]
+                    }
+                ]
+            });
+        });
+    });
+</script>
