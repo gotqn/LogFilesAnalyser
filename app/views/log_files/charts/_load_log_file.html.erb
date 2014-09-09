@@ -1,0 +1,10 @@
+<script>
+    $(document).ready(function() {
+        $.ajax({
+            url: $("pre.log-file").data("source"),
+            context: document.body
+        }).done(function(response) {
+            $("pre.log-file").html(response);
+        });
+    });
+</script>

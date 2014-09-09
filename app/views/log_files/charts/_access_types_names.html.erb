@@ -1,0 +1,7 @@
+<script>
+    $(document).ready(function() {
+        $("input[name='log_file[access_type_id]']").change(function() {
+            $(this).closest(".form-group").next().next().find(".alert-info").hide(0).html($("#AccessTypeID" + $(this).val()).html()).fadeIn("fast");
+        });
+    });
+</script>

@@ -9,6 +9,7 @@
           <%= f.collection_radio_buttons :access_type_id, AccessType.all, :id, :name,
                                          checked: @log_file.get_access_type_id_or_default %>
         </div>
+        <%= render partial: 'log_files/charts/access_types_names.html.erb' %>
       </div>
 
       <div style='display:none'>
@@ -28,12 +29,12 @@
 
       <% if @log_file.id %>
           <%= f.simple_fields_for :config_file do |n| %>
-              <%= n.input :json %>
+              <%= n.input :json, label: 'Config file' %>
           <% end %>
       <% else %>
           <%= f.input :log_file %>
           <%= f.simple_fields_for :config_file_attributes do |n| %>
-              <%= n.input :json %>
+              <%= n.input :json, label: 'Config file' %>
           <% end %>
       <% end %>
 

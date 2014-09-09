@@ -4,33 +4,40 @@
     <div class="panel-body">
 
 
-      <%= search_form_for(@search, html: { class: 'simple-form form-horizontal' },wrapper: :horizontal_form) do |f| %>
-          <fieldset>
-            <%= f.input :name_cont %>
-            <%= f.input :runtime_statistics_stats_cont %>
-            <div class='form-group control-info'>
-              <label class="col-sm-3 control-label">Access</label>
-              <div class='form-actions col-sm-9 form-options'>
-                  <%= f.collection_check_boxes :access_type_id_in, AccessType.all, :id, :name %>
-              </div>
-              <%= button_tag(type: 'submit', class: 'btn btn-primary') do %>
-                  <i class='icon-user-add'></i> Search
-              <% end %>
-            </div>
-           </fieldset>
-      <% end %>
+      <div class="panel panel-default">
+        <div class="panel-body">
 
+          <%= search_form_for(@search, html: { class: 'simple-form form-horizontal search-form' },wrapper: :horizontal_form) do |f| %>
+              <fieldset>
+                <%= f.input :name_cont, label:'Name', placeholder: 'enter file name' %>
+                <%= f.input :runtime_statistics_stats_cont, label: 'Statistics', placeholder: 'enter statistics' %>
+                <div class='form-group control-info'>
+                  <label class="col-sm-3 control-label">Access</label>
+                  <div class='form-actions form-options'>
+                      <%= f.collection_check_boxes :access_type_id_in, AccessType.all, :id, :name %>
+                  </div>
+                  <div class="button-holder">
+                    <%= button_tag(type: 'submit', class: 'btn btn-primary') do %>
+                        <i class='icon-search'></i> Search
+                    <% end %>
+                  </div>
+                </div>
+               </fieldset>
+          <% end %>
+        </div>
+      </div>
 
       <%= link_to new_log_file_path, class: 'btn btn-primary' do %>
           <i class='icon-doc-add'></i> New Log File
       <% end %>
+
     </div>
     <div class="panel-footer">
       <div class="row">
       <% @log_files.each_with_index do |log_file, index| %>
           <% current_stats = get_index_view_runtime_stats(log_file.runtime_statistics.to_a.map(&:serializable_hash)) %>
           <div class="col-sm-6 col-md-4">
-            <div class="panel panel-default">
+            <div class="panel panel-success">
               <div class="panel-heading">
                 <%= log_file.name %><span class="label label-success"><%= current_stats[:hash] %></span>
               </div>

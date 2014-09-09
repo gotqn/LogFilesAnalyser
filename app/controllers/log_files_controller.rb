@@ -8,7 +8,7 @@ class LogFilesController < ApplicationController
   # GET /log_files.json
   def index
     @search = LogFile.search(params[:q])
-    @log_files = @search.result.includes(:runtime_statistics)
+    @log_files = @search.result(distinct: true).includes(:runtime_statistics)
   end
 
   # GET /log_files/1

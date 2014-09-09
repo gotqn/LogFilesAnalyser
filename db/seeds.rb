@@ -80,3 +80,46 @@ types.each do |current_type|
     type.save!
   end
 end
+
+# Inserting default log event types
+
+log_files = {
+
+    log_file_01: {
+
+        name: 'demo log file 01',
+        description: 'This is sample demonstration log file.',
+        log_file: File.new(File.join(Rails.root, '/public/log_files/log_debug_01.txt')),
+        access_type_id: 1,
+        user_id: User.find_by_username('administrator').id
+    },
+
+    log_file_02: {
+
+        name: 'demo log file 02',
+        description: 'This is sample demonstration log file.',
+        log_file: File.new(File.join(Rails.root, '/public/log_files/log_debug_02.txt')),
+        access_type_id: 2,
+        user_id: User.find_by_username('administrator').id
+    },
+
+    log_file_03: {
+
+        name: 'demo log file 03',
+        description: 'This is sample demonstration log file.',
+        log_file: File.new(File.join(Rails.root, '/public/log_files/log_debug_03.txt')),
+        access_type_id: 3,
+        user_id: User.find_by_username('administrator').id
+    }
+}
+
+log_files.each do |file_name, data|
+
+  file = LogFile.new(data)
+
+  unless LogFile.where(name: file.name).exists?
+    file.build_config_file
+    file.save!
+    file.process_uploaded_file
+  end
+end
