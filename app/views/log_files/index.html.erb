@@ -61,12 +61,19 @@
                   <li class="list-group-item list-group-item-info"><%= current_stats[:runtime] %></li>
                 </ul>
               </div>
+              <%
+                 custom_delete_html = '<div>Are you sure you want to delete the following file:</div>'
+                 custom_delete_html += '<br/>'
+                 custom_delete_html += '<div>Name: ""' + "#{log_file.name}" + '""</div>'
+                 custom_delete_html += '<div>' + "#{current_stats[:start_date]}" + '</div>'
+              %>
               <% if can? :manage, LogFile %>
                   <div class="panel-footer">
                     <%= link_to edit_log_file_path(log_file), class: 'btn btn-warning' do %>
                         <i class='icon-pencil'></i> Edit
                     <% end %>
-                    <%= link_to log_file,method: :delete,data: { confirm: 'Are you sure?' },class: 'btn btn-danger' do %>
+                    <%= link_to log_file,method: :delete, data: { confirm: 'Are you sure?', message: custom_delete_html},
+                        class: 'btn btn-danger' do %>
                         <i class='icon-trash'></i> Destroy
                     <% end %>
                   </div>

@@ -68,7 +68,7 @@
             <% log_files = get_log_files_by_id(@user.id) %>
             <% if log_files.empty? %>
                 <tr>
-                  <td colspan='3'><strong>No log files found.</strong></td>
+                  <td colspan='6'><strong>No log files found.</strong></td>
                 </tr>
             <% else %>
                 <% log_files.each do |log_file| %>

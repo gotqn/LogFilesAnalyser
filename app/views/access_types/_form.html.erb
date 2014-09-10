@@ -1,25 +1,24 @@
-<%= form_for(@access_type) do |f| %>
-  <% if @access_type.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@access_type.errors.count, "error") %> prohibited this access_type from being saved:</h2>
-
-      <ul>
-      <% @access_type.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :description %><br>
-    <%= f.text_field :description %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+<%= simple_form_for(@access_type, html: { class: 'form-horizontal' },wrapper: :horizontal_form) do |f| %>
+    <fieldset>
+      <%= f.input :name, autofocus: true, placeholder: 'administrator' %>
+      <%= f.input :description, placeholder: 'log files are visible by administrator accounts only' %>
+      <div class='form-group'>
+        <div class='col-sm-3'></div>
+        <div class='form-actions col-sm-9'>
+          <%= button_tag(type: 'submit', class: 'btn btn-primary') do %>
+              <% if @access_type.new_record? %>
+                  <i class='icon-user-add'></i> Create Access Type
+              <% else %>
+                  <i class='icon-edit-alt'></i> Save
+              <% end %>
+          <% end %>
+          <%= link_to users_path, data: { confirm: 'Are you sure?' },class: 'btn btn-danger' do %>
+              <i class='icon-trash'></i> Cancel
+          <% end %>
+        </div>
+      </div>
+    </fieldset>
 <% end %>
+
+
+
