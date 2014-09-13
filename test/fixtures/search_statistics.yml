@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  runtime_in_minutes: 
+  start_date: 2014-09-13 13:47:31
+  average_hashrate: 9.99
+  log_file_id: 
+
+two:
+  runtime_in_minutes: 
+  start_date: 2014-09-13 13:47:31
+  average_hashrate: 9.99
+  log_file_id: 

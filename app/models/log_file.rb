@@ -14,6 +14,7 @@ class LogFile < ActiveRecord::Base
   has_many :pools, dependent: :destroy
   has_one :graphics_processing_unit, dependent: :destroy
   has_many :log_events, dependent: :delete_all
+  has_one :search_statistic
   belongs_to :user
 
   # Update relationships models
@@ -73,13 +74,18 @@ class LogFile < ActiveRecord::Base
         GraphicsProcessingUnit.includes(:graphics_processing_unit_stat).where(log_file_id: id).order(:name)
       end
 
+      def convert_time_to_minutes(time)
+        time_parts = time.split(':')
+        time_parts[0].to_i * 60 + time_parts[1].to_i
+      end
+
     # processing methods
 
       def process_uploaded_file
         clear_unnecessary_lines
         extracting_platform_details
         extracting_gpus_details
-        extracting_runtime_statistics
+        get_runtime_and_search_stats
         extracting_pool_statistics
         extracting_gpu_stats
         extracting_events
@@ -205,35 +211,55 @@ class LogFile < ActiveRecord::Base
 
       end
 
-      def extracting_runtime_statistics
+      def get_runtime_and_search_stats
 
-        has_extraction_started = false
+        #extracting runtime statistics
 
-        current_file_path = Rails.root.join('public').to_s + log_file.to_s
+          has_extraction_started = false
 
-        File.open(current_file_path, 'r') do |current_file|
-          current_file.each_line do |line|
+          current_file_path = Rails.root.join('public').to_s + log_file.to_s
 
-            # check where runtime statistics start
-            unless has_extraction_started
-              if line =~ /Summary of runtime statistics:/
-                has_extraction_started = true
+          File.open(current_file_path, 'r') do |current_file|
+            current_file.each_line do |line|
+
+              # check where runtime statistics start
+              unless has_extraction_started
+                if line =~ /Summary of runtime statistics:/
+                  has_extraction_started = true
+                end
+                next
               end
-              next
-            end
 
-            # processing the runtime statistics
-            if has_extraction_started and line.index('[') and not line =~ /Pool:/
-              stats = RuntimeStatistic.new
-              stats.stats = line[line.index(' ') + 1, line.length - line.index(' ') - 1].gsub(/\n/, '').strip
-              stats.log_file_id = id
-              stats.save
-            else
-              break if has_extraction_started and line =~ /Pool:/
+              # processing the runtime statistics
+              if has_extraction_started and line.index('[') and not line =~ /Pool:/
+                stats = RuntimeStatistic.new
+                stats.stats = line[line.index(' ') + 1, line.length - line.index(' ') - 1].gsub(/\n/, '').strip
+                stats.log_file_id = id
+                stats.save
+              else
+                break if has_extraction_started and line =~ /Pool:/
+              end
+
             end
+          end
+
+        #extracting search statistics
+
+          stats = RuntimeStatistic.where({log_file_id: id})
+          search_statistic = SearchStatistic.new
+          search_statistic.log_file_id = id
+
+          stats.each do |stat|
+
+            current_stat = stat.stats
+
+            search_statistic.average_hashrate = current_stat.gsub(/[^0-9.]/,'') if current_stat =~ /Average hashrate:/
+            search_statistic.runtime_in_minutes = convert_time_to_minutes(current_stat.gsub(/[^0-9:]/,'')[1,8]) if current_stat =~ /Runtime:/
+            search_statistic.start_date = current_stat[current_stat.index('[') +1, 19] if current_stat =~ /Started at /
 
           end
-        end
+
+          search_statistic.save
 
       end
 

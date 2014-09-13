@@ -1,26 +1,100 @@
+<%= debug params[:q] %>
+
 <div class="panel panel-primary">
   <!-- Default panel contents -->
+
   <div class="panel-heading"><span style="visibility: hidden;">Log files list</span></div>
 
   <div class="panel-body">
     <div class="panel panel-default">
       <div class="panel-body">
 
-        <%= search_form_for(@search, html: { class: 'simple-form form-horizontal search-form' },wrapper: :horizontal_form) do |f| %>
+        <%= search_form_for(@search, html: { class: 'simple-form form-horizontal search-table' },
+                            wrapper: :horizontal_form, url: reports_index_path) do |f| %>
             <fieldset>
-              <%= f.input :name_cont, label:'Name', placeholder: 'enter file name' %>
-              <%= f.input :runtime_statistics_stats_cont, label: 'Statistics', placeholder: 'enter statistics' %>
-              <div class='form-group control-info'>
-                <label class="col-sm-3 control-label">Access</label>
-                <div class='form-actions form-options'>
-                  <%= f.collection_check_boxes :access_type_id_in, AccessType.all, :id, :name %>
-                </div>
-                <div class="button-holder">
-                  <%= button_tag(type: 'submit', class: 'btn btn-primary') do %>
-                      <i class='icon-search'></i> Search
-                  <% end %>
-                </div>
+
+              <table>
+                <tr>
+                  <td><%= f.input :name_cont, label:'Name' %></td>
+                  <td>
+                    <%= f.input :search_statistic_average_hashrate_gteq, label:'Hash rate',
+                                wrapper: :horizontal_input_group do %>
+                        <span class="input-group-addon">>=</span>
+                        <%= f.input_field :search_statistic_average_hashrate_gteq,
+                                          class: 'form-control' %>
+                        <span class="input-group-addon">MH/s</span>
+                    <% end %>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="radio-container">
+                    <div class='form-group control-info'>
+                      <label class="col-sm-3 control-label">Mine only</label>
+                      <div class='form-actions form-options'>
+                        <%= f.collection_radio_buttons :user_id_eq,
+                                                       [[current_user.id, 'Yes'] ,['', 'No']],
+                                                        :first, :last, default: '' %>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="child-container">
+                    <%= f.input :search_statistic_average_hashrate_lteq, label:'Hash rate',
+                                wrapper: :horizontal_input_group do %>
+                        <span class="input-group-addon"><=</span>
+                        <%= f.input_field :search_statistic_average_hashrate_lteq,
+                                          class: 'form-control' %>
+                        <span class="input-group-addon">MH/s</span>
+                    <% end %>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <%= f.input :search_statistic_runtime_in_minutes_gteq, label:'Runtime',
+                                wrapper: :horizontal_input_group do %>
+                        <span class="input-group-addon">>=</span>
+                        <%= f.input_field :search_statistic_runtime_in_minutes_gteq,
+                                          class: 'form-control' %>
+                        <span class="input-group-addon">mm</span>
+                    <% end %>
+                  </td>
+                  <td>
+                    <%= f.input :search_statistic_start_date_gteq, label:'Start date',
+                                wrapper: :horizontal_input_group do %>
+                        <span class="input-group-addon">from</span>
+                        <%= f.input_field :search_statistic_start_date_gteq,
+                                          class: 'form-control date-picker' %>
+                        <span class="input-group-addon">date</span>
+                    <% end %>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="child-container">
+                    <%= f.input :search_statistic_runtime_in_minutes_lteq, label:'Runtime',
+                                wrapper: :horizontal_input_group do %>
+                        <span class="input-group-addon"><=</span>
+                        <%= f.input_field :search_statistic_runtime_in_minutes_lteq,
+                                          class: 'form-control' %>
+                        <span class="input-group-addon">mm</span>
+                    <% end %>
+                  </td>
+                  <td class="child-container">
+                    <%= f.input :search_statistic_start_date_lteq, label:'Start date',
+                                wrapper: :horizontal_input_group do %>
+                        <span class="input-group-addon">to</span>
+                        <%= f.input_field :search_statistic_start_date_lteq,
+                                          class: 'form-control date-picker' %>
+                        <span class="input-group-addon">date</span>
+                    <% end %>
+                  </td>
+                </tr>
+              </table>
+
+              <div class="button-holder">
+                <%= button_tag(type: 'submit', class: 'btn btn-primary') do %>
+                    <i class='icon-search'></i> Search
+                <% end %>
               </div>
+
             </fieldset>
         <% end %>
       </div>
@@ -28,31 +102,126 @@
   </div>
 
   <div class="panel-footer">
-    <div class="row">
-      <% @log_files.each_with_index do |log_file, index| %>
-          <% current_stats = get_index_view_runtime_stats(log_file.runtime_statistics.to_a.map(&:serializable_hash)) %>
-          <div class="col-sm-6 col-md-4">
-            <div class="panel panel-success">
-              <div class="panel-heading">
-                <%= log_file.name %><span class="label label-success"><%= current_stats[:hash] %></span>
-              </div>
-              <div class="panel-body">
-                <ul class="list-group">
-                  <li class="list-group-item list-group-item-success"><%= current_stats[:start_date] %></li>
-                  <li class="list-group-item list-group-item-info"><%= current_stats[:runtime] %></li>
-                </ul>
-              </div>
-            </div>
-          </div>
-      <% end %>
+
+    <div class="table-responsive log-files">
+      <table class="table">
+        <tbody>
+        <tr>
+          <th></th>
+          <th></th>
+          <%= content_tag :th, sort_link(@search, :name, 'Name') %>
+          <%= content_tag :th, sort_link(@search, :search_statistic_average_hashrate, 'Hashrate') %>
+          <%= content_tag :th, sort_link(@search, :search_statistic_start_date, 'Started at') %>
+          <%= content_tag :th, sort_link(@search, :search_statistic_runtime_in_minutes, 'Runtime') %>
+        </tr>
+        <% if @log_files.count == 0 %>
+            <tr><td colspan="6"><div class="alert alert-info" role="alert">No log files found.</div></td></tr>
+        <% end %>
+        <% @log_files.each_with_index do |log_file, index| %>
+            <% current_stats = get_index_view_runtime_stats(log_file.runtime_statistics.to_a.map(&:serializable_hash)) %>
+            <tr class="<%= cycle('info', 'success', name: 'row') %>">
+              <td align="center"><input type="checkbox" value="<%= log_file.id %>"></td>
+              <td>
+                <%= link_to log_file do %>
+                    <i class='icon-list-alt'></i>
+                <% end %>
+              </td>
+              <td><%= log_file.name %></td>
+              <td><span class="label label-<%= cycle('success', 'info', name: 'cell') %>"><%= current_stats[:hash] %></span></td>
+              <td><%= current_stats[:start_date].gsub('Started at : ','') %></td>
+              <td><%= current_stats[:runtime].gsub('Runtime: ','') %></td>
+            </tr>
+        <% end %>
+        </tbody>
+        <tfoot>
+        <tr>
+          <td colspan="6">
+            <%= paginate @log_files %>
+          </td>
+        </tr>
+        </tfoot>
+      </table>
     </div>
-    <%= paginate @log_files %>
+
   </div>
 
+  <div class="panel-body reports-container">
 
-    <div class="panel-body">
-           Charts
+    <div class="panel panel-default">
+        <ul class="list-group">
+          <li class="list-group-item">
+            <div class="input-group">
+              <span class="input-group-addon"><input type="checkbox" value="report_01"></span>
+              <input type="text" class="form-control" value="(5s) hash rate" disabled>
+            </div>
+          </li>
+          <li class="list-group-item">
+            <div class="input-group">
+              <span class="input-group-addon"><input type="checkbox" value="report_02"></span>
+              <input type="text" class="form-control" value="hash rate by threads" disabled>
+            </div>
+          </li>
+          <li class="list-group-item">
+            <div class="input-group">
+              <span class="input-group-addon"><input type="checkbox" value="report_03"></span>
+              <input type="text" class="form-control" value="temp & fan" disabled>
+            </div>
+          </li>
+          <li class="list-group-item">
+            <div class="input-group">
+              <span class="input-group-addon"><input type="checkbox" value="report_04"></span>
+              <input type="text" class="form-control" value="overall" disabled>
+            </div>
+          </li>
+          <li class="list-group-item">
+            <div class="input-group">
+              <div class="button-holder">
+                <%= button_tag(type: 'submit', class: 'btn btn-primary', id: 'draw_reports') do %>
+                    <i class='icon-chart-area'></i> Draw Reports
+                <% end %>
+              </div>
+            </div>
+          </li>
+        </ul>
     </div>
+
+    <div class="panel panel-warning" id="report_01">
+      <div class="panel-heading">
+        <h3 class="panel-title">(5s) hash rate</h3>
+      </div>
+      <div class="panel-body">
+        Panel content
+      </div>
+    </div>
+
+    <div class="panel panel-warning" id="report_02">
+      <div class="panel-heading">
+        <h3 class="panel-title">Hash rate by threads</h3>
+      </div>
+      <div class="panel-body">
+        Panel content
+      </div>
+    </div>
+
+    <div class="panel panel-warning" id="report_03">
+      <div class="panel-heading">
+        <h3 class="panel-title">Temp & Fan</h3>
+      </div>
+      <div class="panel-body">
+        Panel content
+      </div>
+    </div>
+
+    <div class="panel panel-warning" id="report_04">
+      <div class="panel-heading">
+        <h3 class="panel-title">Overall</h3>
+      </div>
+      <div class="panel-body">
+        Panel content
+      </div>
+    </div>
+
+  </div>
 
 
 </div>

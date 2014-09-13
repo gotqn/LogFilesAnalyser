@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140906170502) do
+ActiveRecord::Schema.define(version: 20140913140623) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -127,6 +127,17 @@ ActiveRecord::Schema.define(version: 20140906170502) do
   end
 
   add_index "runtime_statistics", ["log_file_id"], name: "index_runtime_statistics_on_log_file_id", using: :btree
+
+  create_table "search_statistics", force: true do |t|
+    t.integer  "runtime_in_minutes", limit: 8
+    t.date     "start_date"
+    t.decimal  "average_hashrate"
+    t.integer  "log_file_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "search_statistics", ["log_file_id"], name: "index_search_statistics_on_log_file_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "",    null: false

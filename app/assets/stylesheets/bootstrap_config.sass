@@ -163,6 +163,18 @@ body
         &.collapsed:after
           content: '\e85e'
 
+    &.log-files
+      table
+        margin-bottom: 0px
+      .pagination
+        margin: 0px
+      tfoot
+        td
+          padding: 5px 0px 0px 0px
+
+  .panel-footer
+    border-bottom: 1px solid #dddddd
+
     span.stats
       color: #428BCA
       font-weight: bold
@@ -185,3 +197,17 @@ body
       display: inline-block
       float: right
       padding-right: 15px
+
+  .search-table
+    td.child-container
+      label
+        visibility: hidden
+    td.radio-container
+      span
+        padding: 0 15px 0 15px
+        
+  .reports-container
+    .panel.panel-warning
+      .panel-body
+        height: 250px
+

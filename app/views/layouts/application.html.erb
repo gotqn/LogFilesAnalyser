@@ -20,9 +20,9 @@
         <span class='icon-bar'></span>
       </button>
       <% if user_signed_in? %>
-          <%= link_to '', log_files_path, class: 'navbar-brand glyphicon glyphicon-road', title: 'Log files' %>
+          <%= link_to '', reports_index_path, class: 'navbar-brand icon-chart-line', title: 'Log files' %>
       <% else %>
-          <%= link_to 'Miners Analyser', log_files_path, class: 'navbar-brand' %>
+          <%= link_to 'Miners Analyser', reports_index_path, class: 'navbar-brand' %>
       <% end %>
     </div>
 
