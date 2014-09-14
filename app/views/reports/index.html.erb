@@ -1,5 +1,3 @@
-<%= debug params[:q] %>
-
 <div class="panel panel-primary">
   <!-- Default panel contents -->
 
@@ -158,19 +156,7 @@
           <li class="list-group-item">
             <div class="input-group">
               <span class="input-group-addon"><input type="checkbox" value="report_02" checked></span>
-              <input type="text" class="form-control" value="hash rate by threads" disabled>
-            </div>
-          </li>
-          <li class="list-group-item">
-            <div class="input-group">
-              <span class="input-group-addon"><input type="checkbox" value="report_03" checked></span>
               <input type="text" class="form-control" value="temp & fan" disabled>
-            </div>
-          </li>
-          <li class="list-group-item">
-            <div class="input-group">
-              <span class="input-group-addon"><input type="checkbox" value="report_04" checked></span>
-              <input type="text" class="form-control" value="overall" disabled>
             </div>
           </li>
           <li class="list-group-item">
@@ -200,37 +186,11 @@
 
     <div class="panel panel-warning" id="report_02">
       <div class="panel-heading">
-        <h3 class="panel-title">Hash rate by threads</h3>
-      </div>
-      <div class="panel-body">
-        <div class="alert alert-info" role="alert">
-          Display system hash rate values across time for each GPU thread. The shown hash rate is get constantly.
-          <br />
-          Works with one log file only. In case of multiple log files selection details for the first one are displayed.
-        </div>
-      </div>
-    </div>
-
-    <div class="panel panel-warning" id="report_03">
-      <div class="panel-heading">
         <h3 class="panel-title">Temp & Fan</h3>
       </div>
       <div class="panel-body">
         <div class="alert alert-info" role="alert">
           Displays system fan speed and temperature across time.
-          <br />
-          Multiple log files can be analyzed.
-        </div>
-      </div>
-    </div>
-
-    <div class="panel panel-warning" id="report_04">
-      <div class="panel-heading">
-        <h3 class="panel-title">Overall</h3>
-      </div>
-      <div class="panel-body">
-        <div class="alert alert-info" role="alert">
-          Displays system average hash rate, fan speed and temperature across time.
           <br />
           Multiple log files can be analyzed.
         </div>

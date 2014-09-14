@@ -1,0 +1,8 @@
+<%
+    result = Hash.new
+    result[:name] = @log_file_name
+    result[:data] = @log_events.map{ |event| [event.created_at.to_i,event.event.to_f]}.sort{|x,y| x[0] <=> y[0]}
+%>
+
+<%= raw result.to_json.html_safe %>
+

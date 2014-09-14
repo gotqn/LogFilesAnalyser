@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
   get 'reports/index'
+  get 'reports/show'
 
   devise_for :users, controllers: {omniauth_callbacks: "omniauth_callbacks"}
   scope '/admin' do
@@ -10,8 +11,7 @@ Rails.application.routes.draw do
   resources :access_types
   resources :log_files
 
-
-   root 'log_files#index'
+  root 'log_files#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

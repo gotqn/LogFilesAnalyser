@@ -82,7 +82,6 @@
                        stats.each do |gpu|
                             current_data01.push([gpu.name, gpu.graphics_processing_unit_stat.average.gsub(/[\D]/, '').to_i])
                        end
-
                     %>
                     series: [{
                         type: 'pie',

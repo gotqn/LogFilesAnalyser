@@ -423,7 +423,7 @@ class LogFile < ActiveRecord::Base
               curr_time = line[1,line.index(']') - 1]
 
               if prev_time != curr_time
-                index = +1
+                index += 1
                 prev_time = curr_time
               end
 

@@ -4,11 +4,9 @@
 
   var is_chart01_loading = false;
   var is_chart02_loading = false;
-  var is_chart03_loading = false;
-  var is_chart04_loading = false;
 
   function is_any_chart_loading(){
-      return is_chart01_loading || is_chart02_loading || is_chart03_loading || is_chart04_loading;
+      return is_chart01_loading || is_chart02_loading;
   }
 
   $(document).ready(function(){
@@ -21,9 +19,19 @@
 
     $('#draw_reports').on('click', function(){
 
+        var log_files_ids = '';
+
+        $('.log-files input:checked').each(function(index){
+            if(index == 0){
+                log_files_ids = $(this).val();
+            } else{
+                log_files_ids = log_files_ids + ',' + $(this).val();
+            }
+        });
+
         $(this).attr('disabled',true);
 
-        if(!is_any_chart_loading()){
+        if(!is_any_chart_loading() && log_files_ids != ''){
 
             $('.reports-container input:checked').each(function(){
 
@@ -33,25 +41,13 @@
                     case 'report_01':{
 
                         is_chart01_loading = true;
-                        renderChart01();
+                        renderChart01(log_files_ids);
                         break;
                     }
                     case 'report_02':{
 
                         is_chart02_loading = true;
-                        renderChart02();
-                        break;
-                    }
-                    case 'report_03':{
-
-                        is_chart03_loading = true;
-                        renderChart03();
-                        break;
-                    }
-                    case 'report_04':{
-
-                        is_chart04_loading = true;
-                        renderChart04();
+                        renderChart02(log_files_ids);
                         break;
                     }
                 }
@@ -66,28 +62,162 @@
 
   });
 
-  function renderChart01(){
+  function renderChart01(log_files_ids){
 
-      console.log(1);
-      is_chart01_loading = false;
+      var seriesOptions = [];
+      var seriesCounter = 0;
+      var seriesIDs = log_files_ids.split(',');
+      var charContainer = $('#report_01 .panel-body');
+
+      var createChart01 = function () {
+
+          $(charContainer).highcharts('StockChart', {
+
+              rangeSelector: {
+                  inputEnabled: false,
+                  selected: 4
+              },
+
+              yAxis: {
+                  labels: {
+                      formatter: function () {
+                          return (this.value > 0 ? ' + ' : '') + this.value + '%';
+                      }
+                  },
+                  plotLines: [{
+                      value: 0,
+                      width: 2,
+                      color: 'silver'
+                  }]
+              },
+
+              plotOptions: {
+                  series: {
+                      compare: 'percent'
+                  }
+              },
+
+              tooltip: {
+                  pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}</b> ({point.change}%)<br/>',
+                  valueDecimals: 2
+              },
+
+              series: seriesOptions
+          });
+      };
+
+      $.each(seriesIDs, function (index, log_file_id) {
+
+          $.getJSON('<%= reports_show_path %>?log_file_id=' + log_file_id + '&chart_type=report_01',function (data) {
+
+              seriesOptions[index] = {
+                  name: data['name'],
+                  data: data['data']
+              };
+
+              seriesCounter += 1;
+
+              if (seriesCounter === seriesIDs.length) {
+                  createChart01();
+                  is_chart01_loading = false;
+              }
+          });
+      });
   }
 
-  function renderChart02(){
+  function renderChart02(log_files_ids){
 
-      console.log(2);
-      is_chart02_loading = false;
-  }
+      var seriesOptions = [];
+      var seriesCounter = 0;
+      var seriesIDs = log_files_ids.split(',');
+      var charContainer = $('#report_02 .panel-body');
 
-  function renderChart03(){
+      var createChart02 = function () {
 
-      console.log(3);
-      is_chart03_loading = false;
-  }
+          $(charContainer).highcharts('StockChart', {
 
-  function renderChart04(){
+              rangeSelector: {
+                  inputEnabled: false
+              },
 
-      console.log(4);
-      is_chart04_loading = false;
+
+              yAxis: {
+                  labels: {
+                      formatter: function () {
+                          return (this.value > 0 ? ' + ' : '') + this.value + '%';
+                      }
+                  }
+              },
+              /*
+              yAxis: [{
+                  title: {
+                      text: 'Fan Speed'
+                  },
+                  height: 200,
+                  lineWidth: 2
+              }, {
+                  title: {
+                      text: 'Temperature'
+                  },
+                  top: 300,
+                  height: 100,
+                  offset: 0,
+                  lineWidth: 2
+              }],
+              */
+
+              tooltip: {
+                  shared: false,
+                  formatter: function() {
+                      var text = '';
+                      if(this.series.name.indexOf('temp') > 0) {
+                          text = '<span style="color:{series.color}">' + this.series.name + '</span>: <b>' + this.point.y.toFixed(2) + ' °C</b>';
+                      } else {
+                          text = '<span style="color:{series.color}">' + this.series.name + '</span>: <b>' + this.point.y.toFixed(2) + ' %</b>';
+                      }
+                      return text;
+                  }
+              },
+
+              series: seriesOptions
+          });
+      };
+
+      $.each(seriesIDs, function (index, log_file_id) {
+
+          $.getJSON('<%= reports_show_path %>?log_file_id=' + log_file_id + '&chart_type=report_02&data=temp',function (data) {
+
+              seriesOptions[index] = {
+                  name: data['name'] + ' (temp)',
+                  data: data['data'],
+                  type: 'line',
+                  yAxis: 0
+              };
+              seriesCounter += 1;
+          });
+
+          $.getJSON('<%= reports_show_path %>?log_file_id=' + log_file_id + '&chart_type=report_02&data=fan',function (data) {
+
+              seriesOptions[index + seriesIDs.length] = {
+                  name: data['name'] + ' (fan)',
+                  data: data['data'],
+                  type: 'line',
+                  yAxis: 0
+              };
+              seriesCounter += 1;
+          });
+      });
+
+      (function check_if_data_is_loaded(){
+
+          if (seriesCounter === 2 * seriesIDs.length) {
+              console.log(seriesOptions);
+              createChart02();
+              is_chart02_loading = false;
+          }else{
+              setTimeout(check_if_data_is_loaded,100)
+          }
+      })();
   }
 
 </script>
