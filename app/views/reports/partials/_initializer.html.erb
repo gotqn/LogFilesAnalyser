@@ -1,0 +1,93 @@
+<script>
+
+  var loading_html_template = "<%= escape_javascript(render partial: 'reports/partials/loading.html.erb')  %>";
+
+  var is_chart01_loading = false;
+  var is_chart02_loading = false;
+  var is_chart03_loading = false;
+  var is_chart04_loading = false;
+
+  function is_any_chart_loading(){
+      return is_chart01_loading || is_chart02_loading || is_chart03_loading || is_chart04_loading;
+  }
+
+  $(document).ready(function(){
+
+    $('.reports-container input').on('change', function(){
+
+        current_chart_id = $(this).val();
+        $('#' + current_chart_id).slideToggle();
+    });
+
+    $('#draw_reports').on('click', function(){
+
+        $(this).attr('disabled',true);
+
+        if(!is_any_chart_loading()){
+
+            $('.reports-container input:checked').each(function(){
+
+                current_chart_id = $(this).val();
+
+                switch(current_chart_id){
+                    case 'report_01':{
+
+                        is_chart01_loading = true;
+                        renderChart01();
+                        break;
+                    }
+                    case 'report_02':{
+
+                        is_chart02_loading = true;
+                        renderChart02();
+                        break;
+                    }
+                    case 'report_03':{
+
+                        is_chart03_loading = true;
+                        renderChart03();
+                        break;
+                    }
+                    case 'report_04':{
+
+                        is_chart04_loading = true;
+                        renderChart04();
+                        break;
+                    }
+                }
+
+                $('#' + current_chart_id + ' .panel-body').html(loading_html_template);
+
+            });
+        }
+
+        $(this).attr('disabled',false);
+    });
+
+  });
+
+  function renderChart01(){
+
+      console.log(1);
+      is_chart01_loading = false;
+  }
+
+  function renderChart02(){
+
+      console.log(2);
+      is_chart02_loading = false;
+  }
+
+  function renderChart03(){
+
+      console.log(3);
+      is_chart03_loading = false;
+  }
+
+  function renderChart04(){
+
+      console.log(4);
+      is_chart04_loading = false;
+  }
+
+</script>

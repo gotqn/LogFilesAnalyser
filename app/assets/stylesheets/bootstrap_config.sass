@@ -3,7 +3,7 @@
 
 body
   padding-top: 70px
-  background: #ddd url('http://tympanus.net/Tutorials/3DHoverEffects/images/bg.jpg') repeat top left
+  background: #ddd url('/images/background.jpg') repeat top left
 
   .navbar-inverse
     .navbar-brand
@@ -211,3 +211,25 @@ body
       .panel-body
         height: 250px
 
+
+  table.chart-loading
+    width: 100%
+    height: 100%
+    background: #aaaaaa url("/images/loading-background.png") 50% 50% repeat-x
+    opacity: .3
+    .glyphicon-refresh-animate
+      -animation: spin .7s infinite linear
+      -webkit-animation: spin2 .7s infinite linear
+    div.alert
+      font-size: 15px
+    td
+      &:nth-child(1)
+        width: 50%
+      &:nth-child(3)
+        width: 50%
+
+@-webkit-keyframes spin2
+  from
+    -webkit-transform: rotate(0deg)
+  to
+    -webkit-transform: rotate(360deg)

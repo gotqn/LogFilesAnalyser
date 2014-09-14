@@ -151,25 +151,25 @@
         <ul class="list-group">
           <li class="list-group-item">
             <div class="input-group">
-              <span class="input-group-addon"><input type="checkbox" value="report_01"></span>
+              <span class="input-group-addon"><input type="checkbox" value="report_01" checked></span>
               <input type="text" class="form-control" value="(5s) hash rate" disabled>
             </div>
           </li>
           <li class="list-group-item">
             <div class="input-group">
-              <span class="input-group-addon"><input type="checkbox" value="report_02"></span>
+              <span class="input-group-addon"><input type="checkbox" value="report_02" checked></span>
               <input type="text" class="form-control" value="hash rate by threads" disabled>
             </div>
           </li>
           <li class="list-group-item">
             <div class="input-group">
-              <span class="input-group-addon"><input type="checkbox" value="report_03"></span>
+              <span class="input-group-addon"><input type="checkbox" value="report_03" checked></span>
               <input type="text" class="form-control" value="temp & fan" disabled>
             </div>
           </li>
           <li class="list-group-item">
             <div class="input-group">
-              <span class="input-group-addon"><input type="checkbox" value="report_04"></span>
+              <span class="input-group-addon"><input type="checkbox" value="report_04" checked></span>
               <input type="text" class="form-control" value="overall" disabled>
             </div>
           </li>
@@ -190,7 +190,11 @@
         <h3 class="panel-title">(5s) hash rate</h3>
       </div>
       <div class="panel-body">
-        Panel content
+        <div class="alert alert-info" role="alert">
+          Displays system hash rate values across time. The shown hash rate is get on every 5 seconds.
+          <br />
+          Multiple log files can be analyzed.
+        </div>
       </div>
     </div>
 
@@ -199,7 +203,11 @@
         <h3 class="panel-title">Hash rate by threads</h3>
       </div>
       <div class="panel-body">
-        Panel content
+        <div class="alert alert-info" role="alert">
+          Display system hash rate values across time for each GPU thread. The shown hash rate is get constantly.
+          <br />
+          Works with one log file only. In case of multiple log files selection details for the first one are displayed.
+        </div>
       </div>
     </div>
 
@@ -208,7 +216,11 @@
         <h3 class="panel-title">Temp & Fan</h3>
       </div>
       <div class="panel-body">
-        Panel content
+        <div class="alert alert-info" role="alert">
+          Displays system fan speed and temperature across time.
+          <br />
+          Multiple log files can be analyzed.
+        </div>
       </div>
     </div>
 
@@ -217,7 +229,11 @@
         <h3 class="panel-title">Overall</h3>
       </div>
       <div class="panel-body">
-        Panel content
+        <div class="alert alert-info" role="alert">
+          Displays system average hash rate, fan speed and temperature across time.
+          <br />
+          Multiple log files can be analyzed.
+        </div>
       </div>
     </div>
 
@@ -227,4 +243,4 @@
 </div>
 
 
-
+<%= render partial: 'reports/partials/initializer' %>
