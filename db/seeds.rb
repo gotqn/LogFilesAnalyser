@@ -108,7 +108,7 @@ log_files = {
         name: 'demo log file 03',
         description: 'This is sample demonstration log file.',
         log_file: File.new(File.join(Rails.root, '/public/log_files/log_debug_03.txt')),
-        access_type_id: 3,
+        access_type_id: 1,
         user_id: User.find_by_username('administrator').id
     },
 
@@ -117,7 +117,7 @@ log_files = {
         name: '(paging) demo log file 04',
         description: 'This is sample demonstration log file.',
         log_file: File.new(File.join(Rails.root, '/public/log_files/log_debug_04.txt')),
-        access_type_id: 3,
+        access_type_id: 1,
         user_id: User.find_by_username('administrator').id
     },
 

@@ -1,6 +1,6 @@
 class ReportsController < ApplicationController
 
-  authorize_resource class: false
+  #authorize_resource class: false
 
   # GET /log_files
   # GET /log_files.json

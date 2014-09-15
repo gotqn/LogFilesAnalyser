@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get 'reports/show'
 
   devise_for :users, controllers: {omniauth_callbacks: "omniauth_callbacks"}
+
   scope '/admin' do
     resources :users
   end

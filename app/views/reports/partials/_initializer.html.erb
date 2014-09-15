@@ -220,4 +220,15 @@
       })();
   }
 
+  $("input.date-picker").datepicker({
+      dateFormat: "yy-mm-dd",
+      onSelect: function(date) {
+          if ($(this).attr("name").indexOf("gteq") > 0) {
+              return $("input.date-picker[name='q[search_statistic_start_date_lteq]']").datepicker("option", "minDate", date);
+          } else {
+              return $("input.date-picker[name='q[search_statistic_start_date_gteq]']").datepicker("option", "maxDate", date);
+          }
+      }
+  });
+
 </script>

@@ -80,7 +80,7 @@
                     <%
                        current_data01 = Array.new
                        stats.each do |gpu|
-                            current_data01.push([gpu.name, gpu.graphics_processing_unit_stat.average.gsub(/[\D]/, '').to_i])
+                            current_data01.push([gpu.name, gpu.graphics_processing_unit_stat.average.gsub(/[^0-9.]/, '').to_f])
                        end
                     %>
                     series: [{

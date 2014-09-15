@@ -37,20 +37,18 @@ class Ability
       cannot :destroy, User, is_admin: true
     else
 
-      can :manage, :all
-
       # if current user is guest
-      #if user.id.nil?
-      #  can :read, Article
-      #  can :index, DemoGem
+      if user.id.nil?
+        can [:read, :index], LogFile, access_type_id: AccessType.find_by_name('public').id
 
-        # if current user is regular user
-      #else
-      #  can :read, DemoGem
-      #  can [:read, :create], Article
-       # can [:update, :destroy], Article, user_id: user.id
-      #  can :read, User, id: user.id
-      #end
+      # if current user is regular user
+      else
+        can [:read, :create, :index], LogFile
+        cannot :index,  LogFile, access_type_id: AccessType.find_by_name('private').id
+        can [:update, :destroy], LogFile, user_id: user.id
+        can :index,  LogFile, user_id: user.id
+        can :read, User, id: user.id
+      end
 
     end
 

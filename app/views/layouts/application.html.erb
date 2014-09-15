@@ -30,7 +30,9 @@
       <!-- Collection of nav links and other content for toggling -->
       <ul class='nav navbar-nav'>
         <li class='<%= 'active' if current_page?(log_files_path) or current_page?(root_path) %>'><%= link_to 'Logs', log_files_path %></li>
+        <% if user_signed_in? %>
         <li class='<%= 'active' if current_page?(reports_index_path) %>'><%= link_to 'Reports', reports_index_path %></li>
+        <% end %>
         <% if can? :manage, User %>
             <li class='<%= 'active' if current_page?(users_path) %>'><%= link_to 'Users', users_path %></li>
         <% end %>
