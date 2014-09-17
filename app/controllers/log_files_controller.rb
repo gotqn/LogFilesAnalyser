@@ -7,8 +7,16 @@ class LogFilesController < ApplicationController
   # GET /log_files
   # GET /log_files.json
   def index
-    @search = LogFile.search(params[:q])
-    @log_files = @search.result(distinct: true).includes(:runtime_statistics)
+
+    if current_user.is_admin?
+      @search = LogFile.search(params[:q])
+      @log_files = @search.result(distinct: true).includes(:runtime_statistics)
+    else
+      @search = LogFile.search(params[:q])
+      @log_files = @search.result(distinct: true).where.not('access_type_id = ? and user_id != ?',
+                                                        get_access_type_id_by_name('private'),
+                                                        current_user.id).includes(:runtime_statistics)
+    end
   end
 
   # GET /log_files/1

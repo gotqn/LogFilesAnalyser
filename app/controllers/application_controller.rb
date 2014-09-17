@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
 
-  helper_method :get_user_name_by_id, :get_log_files_by_id
+  helper_method :get_user_name_by_id, :get_log_files_by_id, :get_access_type_id_by_name
 
   rescue_from CanCan::AccessDenied do |exception|
 
@@ -35,6 +35,10 @@ class ApplicationController < ActionController::Base
     else
       []
     end
+  end
+
+  def get_access_type_id_by_name (name)
+    AccessType.find_by_name(name).id
   end
 
   protected
